@@ -3,4 +3,5 @@
   <groupId>com.callor</groupId>
   <artifactId>hello</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <name>Hello</name>
 </project>
