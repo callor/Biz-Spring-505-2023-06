@@ -7,11 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>반갑습니다</h1>
-	<p><a href="user/login">로그인</a> 
+	<p>USER NAME : ${name}</p>
+	<p>PASSWORD : ${password}</p>
 </body>
 </html>
-
 
 
 
