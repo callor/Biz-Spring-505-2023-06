@@ -1,0 +1,56 @@
+@charset "UTF-8";
+* {
+	box-sizing: border;
+	margin:0;
+	padding:0;
+}
+
+html {
+	width: 100vw;
+	height: 100vh; 
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	width:100%;
+	height:100%;
+	display: flex;
+	flex-direction: column; 
+}
+
+header {
+	background-color: green;
+	color:white;
+	padding:1.2rem;
+	text-align: center;
+	text-shadow: 1px 1px 1px black;
+}
+
+section.main {
+	flex:1;
+	margin:3px;
+	padding:3px;
+	border:1px solid blue;
+}
+footer {
+	background-color: #ddd;
+	color:#888;
+	text-shadow:1px 1px 1px #eee;
+	text-align: center;
+	padding:0.7rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+

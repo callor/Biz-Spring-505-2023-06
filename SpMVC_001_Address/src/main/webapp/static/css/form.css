@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+form.main {
+	width: 80%;
+	margin:10px auto;
+	border-radius: 10px;
+}
+
+form.main fieldset {
+	border:1px solid #ddd;
+	border-radius: 10px;
+}
+
+form.main legend {
+	/* 제목을 우측으로 밀기 */
+	margin:20px;
+	
+	/* 제목 box 의 여백주기 */
+	padding:20px;
+	
+	font-size: 2rem;
+	font-weight: 900;
+	color:rgba(0,0,100,0.7);
+}
+
+form.main div {
+	display: flex;
+	width: 80%;
+	margin:0 auto;
+}
+
+form.main label, form.main input {
+	margin:5px;
+	padding:8px;
+}
+
+form.main label {
+	flex : 1;
+	text-align: right;
+}
+
+form.main input {
+	flex:3;
+	border:1px solid #eee;
+	
+	/* input box 클릭했을때 두꺼운 border 가 나타나지 않도록 */
+	outline: none;
+	border-radius: 10px;
+}
+
+form.main div:last-of-type {
+	text-align: right;
+	padding:8px 0;
+}
+
+form.main div:last-of-type button {
+	border:none;
+	outline: none;
+	margin-left: 5px;
+	padding:10px 12px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+form.main div:last-of-type button:hover {
+	box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+button.list {
+	background-color: orange;
+	color:white;
+}
+
+button.input {
+	background-color: blue;
+	color:white;
+}
+
+
+
+
+
+
+
+
+
