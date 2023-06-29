@@ -1,7 +1,9 @@
-package com.callor.address;
+package com.callor.address.controller;
 
+import java.util.List;
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.callor.address.dao.AddrDao;
 import com.callor.address.models.AddrDto;
 /*
  * Controller class
@@ -19,9 +22,22 @@ import com.callor.address.models.AddrDto;
 @Controller
 public class HomeController {
 	
+	@Autowired
+	protected AddrDao addrDao;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+		
+		List<AddrDto> addrList = addrDao.selectAll();
+		model.addAttribute("ADDRS", addrList);
 		return "home";
+	}
+	
+	@RequestMapping(value="/list",method=RequestMethod.GET)
+	@ResponseBody
+	public List<AddrDto> list() {
+		List<AddrDto> addrList = addrDao.selectAll();
+		return addrList;
 	}
 	
 	/*
@@ -72,9 +88,19 @@ public class HomeController {
 	}
 	
 	
-	
-	
-	
+	@RequestMapping(value="/id_check",method=RequestMethod.GET)
+	@ResponseBody
+	public String idCheck(String id) {
+		AddrDto addrDto = addrDao.findById(id);
+		if(addrDto == null) {
+			return "OK";
+//		} else if(addrDto.getA_id().equals(id)) {
+//			return "FAIL";
+		} else {
+			return "FAIL";
+		}
+		
+	}
 	
 	
 }
