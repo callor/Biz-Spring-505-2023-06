@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set value="${pageContext.request.contextPath}" var="rootPath" />
-<c:set value="20230629-001" var="version" />
+<c:set value="20230630-003" var="version" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +12,7 @@
 <link href="${rootPath}/static/css/table.css?${version}" rel="stylesheet">
 <link href="${rootPath}/static/css/button.css?${version}" rel="stylesheet">
 <link href="${rootPath}/static/css/form.css?${version}" rel="stylesheet"/>
+<link href="${rootPath}/static/css/list.css?${version}" rel="stylesheet"/>
 
 <script>
 	// JSP 에서 사용하는 rootPath 변수를

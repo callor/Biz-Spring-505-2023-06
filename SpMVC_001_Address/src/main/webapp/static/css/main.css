@@ -1,56 +1,55 @@
 @charset "UTF-8";
 * {
-	box-sizing: border;
-	margin:0;
-	padding:0;
+  box-sizing: border;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-	width: 100vw;
-	height: 100vh; 
+  width: 100vw;
+  height: 100vh;
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 body {
-	width:100%;
-	height:100%;
-	display: flex;
-	flex-direction: column; 
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
-	background-color: green;
-	color:white;
-	padding:1.2rem;
-	text-align: center;
-	text-shadow: 1px 1px 1px black;
+  background-color: green;
+  color: white;
+  padding: 1.2rem;
+  text-align: center;
+  text-shadow: 1px 1px 1px black;
 }
 
 section.main {
-	flex:1;
-	margin:3px;
-	padding:3px;
-	border:1px solid blue;
+  flex: 1;
+  margin: 3px;
+  padding: 3px;
+  border: 1px solid blue;
+  /* 
+  box 범위 내에서 content 를 Scroll 하면서 보여주기 
+  overflow : auto 
+		범위 내에 content 가 있으면 scroll 없이 보여주기
+		범위를 벗어나는 content 가 있으면 scroll 을 보여주기
+  overflow :hidden
+		범위를 벗어나는 content 는 잘라버리기
+  overflow :scroll
+		항상 scroll 막대를 보여주기
+  */
+  overflow: auto;
 }
 footer {
-	background-color: #ddd;
-	color:#888;
-	text-shadow:1px 1px 1px #eee;
-	text-align: center;
-	padding:0.7rem;
+  background-color: #ddd;
+  color: #888;
+  text-shadow: 1px 1px 1px #eee;
+  text-align: center;
+  padding: 0.7rem;
 }
-
-
-
-
-
-
-
-
-
-
-
-
