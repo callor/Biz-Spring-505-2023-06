@@ -10,7 +10,7 @@
 	</tr>
 	<c:forEach begin="0"  end="10"  var="INDEX">
 		<c:set value="${ADDRS[INDEX]}" var="ADDR"/>
-		<tr>
+		<tr data-id="${ADDR.a_id}">
 			<td>${ADDR.a_id}</td>	
 			<td>${ADDR.a_name}</td>	
 			<td>${ADDR.a_tel}</td>	

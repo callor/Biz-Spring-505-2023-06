@@ -118,7 +118,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/detail",method=RequestMethod.GET)
-	public String detail(Model model) {
+	public String detail(String id, Model model) {
+		AddrDto addrDto = addrService.findById(id);
+		model.addAttribute("ADDR", addrDto);
 		model.addAttribute("BODY","DETAIL");
 		return "home";
 	}

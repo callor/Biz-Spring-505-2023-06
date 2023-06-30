@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set value="${pageContext.request.contextPath}" var="rootPath" />
-<c:set value="20230630-008" var="version" />
+<c:set value="20230630-012" var="version" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +21,7 @@
 	var rootPath = "${rootPath}"
 </script>
 <script src="${rootPath}/static/js/input.js?${version}"></script>
+<script src="${rootPath}/static/js/list.js?${version}"></script>
 
 </head>
 <body>
