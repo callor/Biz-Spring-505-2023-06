@@ -3,7 +3,6 @@ package com.callor.address.controller;
 import java.util.List;
 import java.util.Locale;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.callor.address.dao.AddrDao;
 import com.callor.address.models.AddrDto;
+import com.callor.address.service.AddrService;
 /*
  * Controller class
  * @Controller Annotation 이 부착된 class
@@ -21,14 +20,16 @@ import com.callor.address.models.AddrDto;
  */
 @Controller
 public class HomeController {
-	
-	@Autowired
-	protected AddrDao addrDao;
-	
+
+	protected final AddrService addrService;
+	public HomeController(AddrService addrService) {
+		this.addrService = addrService;
+	}
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
-		List<AddrDto> addrList = addrDao.selectAll();
+		List<AddrDto> addrList = addrService.selectAll();
 		model.addAttribute("ADDRS", addrList);
 		return "home";
 	}
@@ -36,7 +37,7 @@ public class HomeController {
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	@ResponseBody
 	public List<AddrDto> list() {
-		List<AddrDto> addrList = addrDao.selectAll();
+		List<AddrDto> addrList = addrService.selectAll();
 		return addrList;
 	}
 	
@@ -67,7 +68,7 @@ public class HomeController {
 	 * Controller 의 method 에 @ResponseBody Annotation 이 부착되면
 	 * 문자열을 그대로(direct) Client 로 Response 하라 라는 의미 
 	 */
-	@ResponseBody
+//	@ResponseBody
 	/*
 	public String insert(String a_id, 
 			String a_name, String a_tel, String a_addr) {
@@ -75,11 +76,23 @@ public class HomeController {
 						a_name,a_tel, a_addr);
 	}
 	*/
-	public String insert(@ModelAttribute AddrDto addrDto) {
-		return String.format("이름: %s, 전화번호 : %s, 주소 : %s",
-				addrDto.getA_name(),
-				addrDto.getA_tel(), 
-				addrDto.getA_addr());
+	public String insert(@ModelAttribute AddrDto addrDto,Model model) {
+		addrService.insert(addrDto);
+		
+		// 내가 데이터를 만들고 view 를 생성하는 일을 할때
+		// List<AddrDto> addrList = addrService.selectAll();
+		// model.addAttribute("ADDRS",addrList);
+		// return "home";
+		
+		// 데이터를 만들고 view 를 생성하여 client 에게 resonse 하는
+		// URL 이 이미 있으니
+		// client 야 번거롭지만 한번더 요청해 주라
+		return "redirect:/";
+		
+//		return String.format("이름: %s, 전화번호 : %s, 주소 : %s",
+//				addrDto.getA_name(),
+//				addrDto.getA_tel(), 
+//				addrDto.getA_addr());
 	}
 	
 	@RequestMapping(value="/insert/test",method=RequestMethod.GET)
@@ -91,16 +104,28 @@ public class HomeController {
 	@RequestMapping(value="/id_check",method=RequestMethod.GET)
 	@ResponseBody
 	public String idCheck(String id) {
-		AddrDto addrDto = addrDao.findById(id);
-		if(addrDto == null) {
-			return "OK";
+		return addrService.idCheck(id);
+		
+//		AddrDto addrDto = addrService.findById(id);
+//		if(addrDto == null) {
+//			return "OK";
 //		} else if(addrDto.getA_id().equals(id)) {
 //			return "FAIL";
-		} else {
-			return "FAIL";
-		}
+//		} else {
+//			return "FAIL";
+//		}
 		
+	}
+	
+	@RequestMapping(value="/detail",method=RequestMethod.GET)
+	public String detail(Model model) {
+		model.addAttribute("BODY","DETAIL");
+		return "home";
 	}
 	
 	
 }
+
+
+
+

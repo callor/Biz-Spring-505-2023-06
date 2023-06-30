@@ -13,6 +13,7 @@
 <link href="${rootPath}/static/css/button.css?${version}" rel="stylesheet">
 <link href="${rootPath}/static/css/form.css?${version}" rel="stylesheet"/>
 <link href="${rootPath}/static/css/list.css?${version}" rel="stylesheet"/>
+<link href="${rootPath}/static/css/detail.css?${version}" rel="stylesheet"/>
 
 <script>
 	// JSP 에서 사용하는 rootPath 변수를
@@ -34,6 +35,10 @@
 		<c:if test="${BODY == 'INPUT'}">
 			<%@ include file="/WEB-INF/views/addr/input.jsp" %>
 		</c:if>
+		<c:if test="${BODY == 'DETAIL'}">
+			<%@ include file="/WEB-INF/views/addr/detail.jsp" %>
+		</c:if>
+
 	</section>
 	<footer>
 		<address>CopyRight &copy; callor@callor.com</address>

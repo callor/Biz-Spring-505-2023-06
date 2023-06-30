@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+article.detail {
+  width: 80%;
+  margin: 5px auto;
+}
+
+article.detail.data div {
+  width: 80%;
+  display: flex;
+  margin: 5px auto;
+}
+
+article.detail strong {
+  flex: 1;
+  background-color: #ddd;
+  text-align: right;
+}
+
+article.detail span {
+  flex: 3;
+  border: 1px solid #ddd;
+  text-align: left;
+  margin-left: 3px;
+}
+
+article.detail.button {
+  text-align: right;
+}
+
+article.detail.button button {
+  border: none;
+  outline: none;
+  margin: 5px 0 5px 5px;
+  border-radius: 5px;
+  padding: 10px 12px;
+}
+
+article.detail.button button:hover {
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
