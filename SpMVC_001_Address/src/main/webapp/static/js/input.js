@@ -10,13 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // DOM 객체(tag 객체)
   const form_addr = document.querySelector("form.main.input");
-  const input_id = form_addr.querySelector("input[name='a_id']");
-  const input_name = form_addr.querySelector("input[name='a_name']");
-  const input_tel = form_addr.querySelector("input[name='a_tel']");
-  const input_addr = form_addr.querySelector("input[name='a_addr']");
+  const input_id = form_addr?.querySelector("input[name='a_id']");
+  const input_name = form_addr?.querySelector("input[name='a_name']");
+  const input_tel = form_addr?.querySelector("input[name='a_tel']");
+  const input_addr = form_addr?.querySelector("input[name='a_addr']");
 
-  const btn_input = form_addr.querySelector("button.input");
-  const btn_list = form_addr.querySelector("button.list");
+  const btn_input = form_addr?.querySelector("button.input");
+  const btn_list = form_addr?.querySelector("button.list");
 
   const msg_boxs = document.querySelectorAll("div.message");
 
@@ -43,6 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Server 로 데이터를 전송하라
     // input_id = document.querySelector("form.main input[name='a_id']")
 
+    for (let i = 0; i < msg_boxs.length; i++) {
+      msg_boxs[i].classList.remove("ok");
+      msg_boxs[i].classList.remove("error");
+    }
+
     if (!input_id.value) {
       message_view(
         INDEX.ID,
@@ -52,8 +57,50 @@ document.addEventListener("DOMContentLoaded", () => {
       input_id.focus();
       return false;
     }
+    if (!input_name.value) {
+      message_view(
+        INDEX.NAME,
+        "error",
+        "* 이름은 반드시 입력해야 합니다"
+      );
+      input_name.focus();
+      return false;
+    }
+    if (!input_tel.value) {
+      message_view(
+        INDEX.TEL,
+        "error",
+        "* 전화번호는 반드시 입력해야 합니다"
+      );
+      input_tel.focus();
+      return false;
+    }
 
-    // addr_input?.submit();
+    const tel_rexp = /^\d{3}-\d{3,4}-\d{4}$/;
+    if (!tel_rexp.test(input_tel.value)) {
+      message_view(
+        INDEX.TEL,
+        "error",
+        "전화번호 형식 틀립니다(000-0000-0000)"
+      );
+      input_tel.focus();
+      input_tel.select();
+      return false;
+    }
+
+    if (!input_addr.value) {
+      message_view(
+        INDEX.ADDR,
+        "error",
+        "* 주소는 반드시 입력해야 합니다"
+      );
+      input_addr.focus();
+      input_addr.select();
+      return false;
+    }
+    if (confirm("저장할까요")) {
+      form_addr?.submit();
+    }
   };
   // 선언된 event call 함수를 사용하여 click evetn 선언
   btn_input?.addEventListener("click", inputButtonClickHandler);
