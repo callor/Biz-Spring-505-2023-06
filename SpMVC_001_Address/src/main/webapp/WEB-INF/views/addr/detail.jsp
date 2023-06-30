@@ -15,9 +15,11 @@
 	</div>
 </article>
 <article class="detail button">
-	<button>리스트로</button>
-	<button>수정</button>
-	<button>삭제</button>
+	<div>
+		<button>리스트로</button>
+		<button>수정</button>
+		<button>삭제</button>
+	</div>
 </article>
 
 

@@ -5,10 +5,16 @@ article.detail {
   margin: 5px auto;
 }
 
-article.detail.data div {
+article.detail div {
   width: 80%;
   display: flex;
   margin: 5px auto;
+  justify-content: right;
+}
+
+article.detail strong,
+article.detail span {
+  padding: 12px 5px;
 }
 
 article.detail strong {
