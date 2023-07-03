@@ -16,9 +16,9 @@
 </article>
 <article class="detail button">
 	<div>
-		<button>리스트로</button>
-		<button>수정</button>
-		<button>삭제</button>
+		<button class="detail list">리스트로</button>
+		<button class="detail update" data-id="${ADDR.a_id}">수정</button>
+		<button class="detail delete" data-id="${ADDR.a_id}">삭제</button>
 	</div>
 </article>
 

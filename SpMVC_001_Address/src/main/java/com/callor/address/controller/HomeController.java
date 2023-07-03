@@ -64,18 +64,6 @@ public class HomeController {
 	@RequestMapping(value="/insert",
 			method=RequestMethod.POST,
 			produces = "text/html;charset=UTF-8")
-	/*
-	 * Controller 의 method 에 @ResponseBody Annotation 이 부착되면
-	 * 문자열을 그대로(direct) Client 로 Response 하라 라는 의미 
-	 */
-//	@ResponseBody
-	/*
-	public String insert(String a_id, 
-			String a_name, String a_tel, String a_addr) {
-		return String.format("이름: %s, 전화번호 : %s, 주소 : %s",
-						a_name,a_tel, a_addr);
-	}
-	*/
 	public String insert(@ModelAttribute AddrDto addrDto,Model model) {
 		addrService.insert(addrDto);
 		
@@ -89,11 +77,27 @@ public class HomeController {
 		// client 야 번거롭지만 한번더 요청해 주라
 		return "redirect:/";
 		
+	}
+
+	/*
+	 * Controller 의 method 에 @ResponseBody Annotation 이 부착되면
+	 * 문자열을 그대로(direct) Client 로 Response 하라 라는 의미 
+	 */
+//	@ResponseBody
+	/*
+	public String insert(String a_id, 
+			String a_name, String a_tel, String a_addr) {
+		return String.format("이름: %s, 전화번호 : %s, 주소 : %s",
+						a_name,a_tel, a_addr);
 //		return String.format("이름: %s, 전화번호 : %s, 주소 : %s",
 //				addrDto.getA_name(),
 //				addrDto.getA_tel(), 
 //				addrDto.getA_addr());
+
+	
 	}
+	*/
+
 	
 	@RequestMapping(value="/insert/test",method=RequestMethod.GET)
 	public String insert() {
@@ -117,15 +121,39 @@ public class HomeController {
 		
 	}
 	
+	/*
+	 * localhost:8080/addr/detail?id=A0001 형식으로 request 가 오면
+	 * id=A0001 에 설정된 A0001 값을 id 매개변수로 받는다
+	 * 		URL : localhost:8080/addr/detail
+	 * 		queryString : ?id=A0001
+	 */
 	@RequestMapping(value="/detail",method=RequestMethod.GET)
 	public String detail(String id, Model model) {
+		
+		// request 에 설된 id 값으로 DB table 에서 주소 정보를 SELECT
 		AddrDto addrDto = addrService.findById(id);
+		
+		// SELECT 된 주소를 model 에 담아서 view 로 전달
 		model.addAttribute("ADDR", addrDto);
+		
+		// home.jsp 에 include 되어 보여질 화면(변수) 세팅
 		model.addAttribute("BODY","DETAIL");
 		return "home";
+		
 	}
 	
-	
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
+	public String delete(String id) {
+		int result =addrService.delete(id);
+		
+		if(result > 0) {
+			return "redirect:/";
+		} else {
+			// 삭제에 실패했을 경우
+			// 현재 id 의 detail 화면으로 되돌아 가라
+			return "redirect:/detail?id=" + id;
+		}
+	}
 }
 
 

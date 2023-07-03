@@ -45,3 +45,19 @@ article.detail.button button {
 article.detail.button button:hover {
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
+
+button.detail {
+  color: white;
+}
+
+button.detail.list {
+  background-color: orange;
+}
+
+button.detail.update {
+  background-color: blue;
+}
+
+button.detail.delete {
+  background-color: red;
+}
