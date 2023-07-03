@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+form.user.login {
+  width: 60%;
+  margin: 20px auto;
+}
+form.user.login fieldset {
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form.user.login input,
+form.user.login button {
+  width: 280px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  transition: 0.8s;
+  padding: 12px;
+  margin: 5px;
+}
+form.user.login input {
+  border: 1px solid #ddd;
+}
+form.user.login input:focus {
+  width: 320px;
+}
+form.user.login button {
+  background-color: green;
+  color: white;
+  cursor: pointer;
+}
+form.user.login button:hover {
+  width: 320px;
+}
+
+form.user.login div.error {
+  border-radius: 25px;
+  background-color: red;
+  color: yellow;
+  padding: 8px;
+  margin: 5px;
+}
