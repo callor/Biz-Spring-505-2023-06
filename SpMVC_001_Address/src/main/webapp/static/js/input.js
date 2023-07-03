@@ -9,14 +9,47 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // DOM 객체(tag 객체)
-  const form_addr = document.querySelector("form.main.input");
-  const input_id = form_addr?.querySelector("input[name='a_id']");
-  const input_name = form_addr?.querySelector("input[name='a_name']");
-  const input_tel = form_addr?.querySelector("input[name='a_tel']");
-  const input_addr = form_addr?.querySelector("input[name='a_addr']");
 
-  const btn_input = form_addr?.querySelector("button.input");
-  const btn_list = form_addr?.querySelector("button.list");
+  /**
+   * JS 의 false 판별
+   * 어떤 변수의 값이 null, undefined, "", 0, NaN(Not a Number) 등의
+   * 값을 가질때
+   * 변수 || 연산을 수행하면 이 결과는 false 처럼 작동한다
+   * const 변수 = 변수1 || 변수2 || 변수3 || 변수4 || "없음"
+   *  1. 변수1의 값이 false 가 아니면 변수1의 값을 왼쪽 변수에 대입
+   *  2. 변수2의 값이 false 이면 변수2의 값을 비교
+   *  3. 변수2의 값이 false 가 아니면 변수2의 값을 왼쪽 변수에 대입
+   *  4. 변수4까지 (변수1 ~ 변수4) 모든 변수가 false 인 값을 가지고 있으면
+   *  5. 왼쪽 변수에는 없음 이라는 문자열이 대입된다
+   *
+   * let 변수 = null
+   * if(변수1) 변수 = 변수1
+   * else if(변수2) 변수 = 변수2
+   * else if(변수3) 변수 = 변수3
+   * else if(변수4) 변수 = 변수4
+   * else 변수 = "없음"
+   *
+   *
+   */
+  const form_addr =
+    document.querySelector("form.main.input") ||
+    document.querySelector("form.main.update");
+
+  // let form_addr = null
+  // if(document.querySelector("form.main.input")) {
+  //   form_addr = document.querySelector("form.main.input")
+  // } else {
+  //   form_addr = document.querySelector("form.main.update")
+  // }
+
+  const input_id = form_addr?.querySelector("input[name='a_id']");
+
+  const input_name = document.querySelector("input[name='a_name']");
+  const input_tel = document.querySelector("input[name='a_tel']");
+  const input_addr = document.querySelector("input[name='a_addr']");
+
+  const btn_input = document.querySelector("button.input");
+  const btn_list = document.querySelector("button.list");
 
   const msg_boxs = document.querySelectorAll("div.message");
 
@@ -48,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       msg_boxs[i].classList.remove("error");
     }
 
-    if (!input_id.value) {
+    if (input_id && !input_id.value) {
       message_view(
         INDEX.ID,
         "error",

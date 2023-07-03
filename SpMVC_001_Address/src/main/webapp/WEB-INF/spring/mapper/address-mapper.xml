@@ -16,6 +16,12 @@
  		VALUES
  		(#{a_id}, #{a_name}, #{a_tel}, #{a_addr})	
  	</insert>
- 	<update id="update"></update>
+ 	<update id="update">
+ 		UPDATE tbl_address 
+ 		SET a_name = #{a_name},
+ 			a_tel = #{a_tel},
+ 			a_addr = #{a_addr}
+ 		WHERE a_id = #{a_id}
+ 	</update>
  
  </mapper> 

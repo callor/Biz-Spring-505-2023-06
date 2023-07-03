@@ -154,6 +154,34 @@ public class HomeController {
 			return "redirect:/detail?id=" + id;
 		}
 	}
+
+	// 데이터 Update 할 화면 보여주기
+	// Spring 에서는 RequestMapping 을 참조하여
+	// 		update GETTER method 라고 부른다 
+	@RequestMapping(value="/update",method=RequestMethod.GET)
+	public String update(String id, Model model) {
+		
+		// 변경할 주소 데이터 SELETE 하여 model 에 담기
+		AddrDto addrDto = addrService.findById(id);
+		model.addAttribute("ADDR",addrDto);
+		model.addAttribute("BODY","UPDATE");
+		return "home";
+		
+	}
+	
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	public String update(AddrDto dto) {
+		
+		int result = addrService.update(dto);
+		String id = dto.getA_id();
+		// update 가 성공하면 detail 화면을 보여서 변경 된것을 확인
+		if(result > 0) {
+			return "redirect:/detail?id=" + id;
+		// update 가 실패하면 다시 update 화면으로 보내서 다시 변경하기
+		} else {
+			return "redirect:/update?id=" + id;
+		}
+	}
 }
 
 

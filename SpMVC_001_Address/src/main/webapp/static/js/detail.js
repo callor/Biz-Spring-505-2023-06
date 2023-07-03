@@ -7,6 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.location.href = `${rootPath}/`;
   });
 
+  btn_update?.addEventListener("click", (e) => {
+    const id = e.target.dataset.id;
+    document.location.href = `${rootPath}/update?id=${id}`;
+  });
+
   btn_delete?.addEventListener("click", (e) => {
     // button tag 가 가장 중앙에 있기 때문에
     // click event e.target 은 delete button 이 된다
