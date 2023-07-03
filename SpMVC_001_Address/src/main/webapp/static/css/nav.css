@@ -1,0 +1,29 @@
+@charset "UTF-8";
+nav.main {
+  background-color: blue;
+  color: white;
+}
+nav.main ul {
+  list-style: none;
+  display: flex;
+}
+
+nav.main li {
+  /* Top and Botton, Left and Right */
+  margin: 12px 16px;
+  /* Top Right Bottom Left */
+  padding: 10px 12px 8px 12px;
+  border-bottom: 2px solid transparent;
+  transition: 0.7s;
+}
+
+nav.main li:nth-of-type(2) {
+  margin-left: auto;
+}
+nav.main li.admin {
+  margin-left: auto;
+}
+nav.main li:hover {
+  border-bottom: 2px solid yellow;
+  cursor: pointer;
+}
