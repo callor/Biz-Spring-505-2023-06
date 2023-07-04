@@ -19,6 +19,8 @@
 
 <link href="${rootPath}/static/css/user/login.css?${version}" rel="stylesheet"/>
 
+
+
 <script>
 	// JSP 에서 사용하는 rootPath 변수를
 	// JS 코드에서 사용하기 위한 rootPath 변수로 재 설정
@@ -58,6 +60,11 @@
 		<address>CopyRight &copy; callor@callor.com</address>
 	</footer>
 </body>
+<c:if test="${MSG == 'LOGOUT' }">
+	<script>
+		alert("로그아웃 되었습니다")
+	</script>
+</c:if>
 </html>
 
 

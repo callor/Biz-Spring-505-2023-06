@@ -24,6 +24,14 @@ public class UserController {
 	public String home() {
 		return null;
 	}
+	/*
+	 * error 매개변수
+	 * POST /user/login 에서 username 과 password 가 틀릴경우
+	 * redirect 를 하면서 전달하는 error 값을 받기위한 매개변수
+	 * 메뉴에서 login 을 실행하면 이 데이터는 null 이다
+	 * 		error 매개변수 값은 그대로 model 에 담아서
+	 * 		login.jsp 로 보낸다 
+	 */
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login(String error, Model model) {
 		model.addAttribute("ERROR", error);
@@ -57,6 +65,13 @@ public class UserController {
 		
 		String result = userService.userLogin(userDto);
 		if(result.equals("OK")) {
+			/*
+			 * add() : 무한히 데이터를 추가할수 있다 라는 의미
+			 * set() : 제한적으로 데이터를 추가하는 것이 좋다 라는 의미
+			 * httpSession 에 set 한 Attribute 는 
+			 * model 에 add 한 Attribute 와 view 에서 사용하는 것은
+			 * 거의 동일하다
+			 */
 			httpSession.setAttribute("USER", userDto);
 			return "redirect:/";
 		} else {
@@ -75,7 +90,14 @@ public class UserController {
 		return null;
 	}
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
-	public String logout() {
+	public String logout(HttpSession httpSession) {
+		
+		// Session 에 저장된 데이터를 clear
+		httpSession.setAttribute("USER", null);
+		
+		// Session 자체를 모두 소멸
+		httpSession.removeAttribute("USER");
+		return "redirect:/?message=LOGOUT";
 		
 		/*
 		 * Controller.method() 에서 response 결과인
@@ -86,7 +108,7 @@ public class UserController {
 		 * 이 method 가 호출된 requestMapping 주소가
 		 * view 파일 이름을 대신하게 된다
 		 */
-		return null;
+		// return null;
 	}
 	
 

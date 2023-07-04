@@ -27,11 +27,13 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(String message, Model model) {
 		
+		model.addAttribute("MSG",message);
 		List<AddrDto> addrList = addrService.selectAll();
 		model.addAttribute("ADDRS", addrList);
 		return "home";
+		
 	}
 	
 	@RequestMapping(value="/list",method=RequestMethod.GET)
