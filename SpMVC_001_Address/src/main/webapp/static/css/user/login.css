@@ -1,20 +1,48 @@
 @charset "UTF-8";
 
+/*
+width : 초기에 보이는 box 의 폭
+min-width : 화면의 폭이 줄어들때 현재 box 의 최소 크기 유지
+  화면이 줄어들어도 login Box 의 크기는 최소 400px 을 유지하라
+
+width < min-width : width 가 min-width 보다 작으면 width 값은 무시  
+*/
+
 form.user.login {
-  width: 60%;
+  width: 40%;
+  min-width: 400px;
   margin: 20px auto;
 }
 form.user.login fieldset {
   border: 1px solid blue;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
+/*
+자식 요소 Selector
+  부모 자식
+  부모 + 자식
+  부모 > 자식
+*/
+form.user.login legend {
+  /* html 에 지정된 font 의 크기를 기준으로 배율조정 */
+  /* 1rem : 16px * 1 정도, 1.2rem 16px * 1.2 정도 */
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+/* div, input, button tag 에 공통 style 지정 */
+form.user.login div,
 form.user.login input,
 form.user.login button {
-  width: 280px;
+  /* calc : width, height 등을 표현할때 계산식으로 표기하는 방법 */
+  /* css3 에서 제공되는 함수 */
+  /* width 를 부모(form) 의 width 100% 보다 150px 만큼 작게 */
+  width: calc(100% - 150px);
   border-radius: 25px;
   outline: none;
   border: none;
@@ -25,16 +53,18 @@ form.user.login button {
 form.user.login input {
   border: 1px solid #ddd;
 }
+/* input box 를 클릭했을때 */
 form.user.login input:focus {
-  width: 320px;
+  width: calc(100% - 100px);
 }
 form.user.login button {
   background-color: green;
   color: white;
   cursor: pointer;
+  margin-bottom: 1.5rem;
 }
 form.user.login button:hover {
-  width: 320px;
+  width: calc(100% - 100px);
 }
 
 form.user.login div.error {
@@ -43,4 +73,6 @@ form.user.login div.error {
   color: yellow;
   padding: 8px;
   margin: 5px;
+  font-weight: 900;
+  text-align: center;
 }

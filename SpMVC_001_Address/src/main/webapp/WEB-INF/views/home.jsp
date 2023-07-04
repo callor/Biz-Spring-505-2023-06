@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set value="${pageContext.request.contextPath}" var="rootPath" />
-<c:set value="20230703-019" var="version" />
+<c:set value="20230704-005" var="version" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>나의 주소록</title>
 <link href="${rootPath}/static/css/main.css?${version}" rel="stylesheet">
 <link href="${rootPath}/static/css/nav.css?${version}" rel="stylesheet">
 

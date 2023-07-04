@@ -5,14 +5,10 @@
 	<fieldset>
 		<legend>로그인</legend>
 		<c:if test="${ERROR == 'F_USERNAME'}">
-			<div class="error">
-				<h3>USER NAME이 없습니다.</h3>			
-			</div>
+			<div class="error">USER NAME이 없습니다.</div>
 		</c:if>	
 		<c:if test="${ERROR == 'F_PASSWORD'}">
-			<div class="error">
-				<h3>비밀번호가 잘못되었습니다.</h3>			
-			</div>
+			<div class="error">비밀번호가 잘못되었습니다.</div>
 		</c:if>	
 		<input placeholder="USER NAME" name="username"/>
 		<input placeholder="PASSWORD" name="password"/>
