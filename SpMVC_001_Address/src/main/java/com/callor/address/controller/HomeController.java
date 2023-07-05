@@ -1,7 +1,8 @@
 package com.callor.address.controller;
 
 import java.util.List;
-import java.util.Locale;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.callor.address.models.AddrDto;
+import com.callor.address.models.UserDto;
 import com.callor.address.service.AddrService;
 /*
  * Controller class
@@ -47,8 +49,24 @@ public class HomeController {
 	 * localhost:8080/address/insert 로 요청이 오면
 	 * addr/input.jsp 파일을 열어서 Response 하도록 method 생성
 	 */
+	// 처음화면에서 주소추가 버튼을 클릭했을때 
+	// 추가 화면을 보여주는 method
+	/*
+	 * method 의 매개변수로 HttpSession 객체를 설정하는 순간
+	 * 이 method 에서 Session 에 저장된 데이터를 참조 할수 있다.
+	 */
 	@RequestMapping(value="/insert",method=RequestMethod.GET)
-	public String insert(Model model) {
+	public String insert(Model model,HttpSession httpSession) {
+		
+		// Session 으로 부터 USER Attribute 를 getter 하고
+		// 그 데이터를 UserDto type 으로 변환하여 userDto 객체에 저장
+		// 로그인이 되어 있으면 userDto 는 실제 로그인한 user 의 정보
+		// 로그인이 되어 있지않으면 userDto 는 null 값이다
+		UserDto userDto = (UserDto) httpSession.getAttribute("USER");
+		if(userDto == null) {
+			return "redirect:/user/login?error=LOGIN";
+		}
+		
 		model.addAttribute("BODY","INPUT");
 		/*
 		 * Controller 의 method 에서 문자열을 return 하면
@@ -66,7 +84,12 @@ public class HomeController {
 	@RequestMapping(value="/insert",
 			method=RequestMethod.POST,
 			produces = "text/html;charset=UTF-8")
-	public String insert(@ModelAttribute AddrDto addrDto,Model model) {
+	public String insert(@ModelAttribute AddrDto addrDto,Model model,HttpSession httpSession) {
+		UserDto userDto = (UserDto) httpSession.getAttribute("USER");
+		if(userDto == null) {
+			return "redirect:/user/login?error=LOGIN";
+		}
+		
 		addrService.insert(addrDto);
 		
 		// 내가 데이터를 만들고 view 를 생성하는 일을 할때

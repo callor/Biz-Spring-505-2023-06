@@ -4,6 +4,9 @@
 <form method="POST" class="form user login">
 	<fieldset>
 		<legend>로그인</legend>
+		<c:if test="${ERROR == 'LOGIN' }">
+			<div class="error">로그인이 필요한 서비스 입니다</div>
+		</c:if>
 		<c:if test="${ERROR == 'F_USERNAME'}">
 			<div class="error">USER NAME이 없습니다.</div>
 		</c:if>	
