@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+div.main.button_box {
+	width: 80%;
+	margin:5px auto;
+	padding:7px 0;
+	text-align: right;
+}
+
+div.main.button_box a {
+	display: inline-block;
+	padding:0.7rem;
+	background-color: blue;
+	color:white;	
+	border-radius: 5px;
+}
+
+div.main.button_box a:hover {
+	box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.3);
+} 
+
+
+
+
+

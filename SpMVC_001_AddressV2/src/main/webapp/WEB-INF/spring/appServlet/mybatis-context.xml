@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- 
+	dataSouce : DBMS 에 연결할 통로를 만들어줄 객체(도구)
+	BasicDataSource ds = new BasicDataSouce()
+	ds.setDriverClassName("");
+	ds.setUrl("");
+	ds.setUsername("");
+	ds.setPassword("");
+	-->
+	<bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="addr"/>
+		<property name="password" value="12341234"/>
+	</bean>
+	
+	<bean id="mySQL_DS" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/addrDB"/>
+		<property name="username" value="root"/>
+		<property name="password" value="!Biz8080"/>
+	</bean>
+	
+	<bean id="sqlSessionFactory" 
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource"  ref="mySQL_DS" />
+		<property name="typeAliasesPackage" 
+					value="com.callor.address.models"/>
+		<property name="mapperLocations" 
+				value="/WEB-INF/spring/mapper/*-mapper.xml"/>
+	</bean>
+	
+	<!-- 
+	아래 코드에서 System.in 을 constructor argument 라고 한다
+	Scanner scan = new Scanner(System.in);
+
+	SqlSessionTemplate sqlSessionTemplate
+		= new SqlSessionTemplate(sqlSessionFactory);
+	 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+	
+	<!-- 
+	mybatis 야 ...dao page 에 있는 interface 를 scan 하여
+	@Select, @Insert, @Update, @Delete 등이 있으면
+	SQL 을 만들어라
+	-->
+	<mybatis-spring:scan base-package="com.callor.address.dao"/>
+
+
+
+</beans>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.address.dao.AddrDao">
+ 
+ 	<!--
+ 	Oracle 
+ 	<select id="findByName">
+ 		SELECT * FROM tbl_address 
+		WHERE a_name LIKE '%' || #{name} || '%' 
+ 	</select>
+ 	 -->
+ 	<select id="findByName">
+ 		SELECT * FROM tbl_address 
+		WHERE a_name LIKE CONCAT('%', #{name} , '%' ) 
+ 	</select>
+ 
+ 	<insert id="insert">
+ 		INSERT INTO tbl_address
+ 		(a_id, a_name, a_tel, a_addr)
+ 		VALUES
+ 		(#{a_id}, #{a_name}, #{a_tel}, #{a_addr})	
+ 	</insert>
+ 	<update id="update">
+ 		UPDATE tbl_address 
+ 		SET a_name = #{a_name},
+ 			a_tel = #{a_tel},
+ 			a_addr = #{a_addr}
+ 		WHERE a_id = #{a_id}
+ 	</update>
+ 
+ </mapper> 

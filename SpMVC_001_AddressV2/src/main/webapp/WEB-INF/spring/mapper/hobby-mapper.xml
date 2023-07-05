@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.address.dao.HobbyDao">
+ 	
+ 	<select id="findHobbyByAID">
+ 		SELECT ah_seq, ah_aid, ah_hbcode, hb_name, hb_descrip
+			FROM tbl_addr_hobby
+    			LEFT JOIN tbl_hobby
+        			ON ah_hbcode = hb_code
+			WHERE ah_aid = #{aid}
+ 	</select>
+ 
+ </mapper> 

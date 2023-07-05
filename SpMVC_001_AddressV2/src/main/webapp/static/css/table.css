@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+table {
+  width: 80%;
+  margin: 10px auto;
+  border-collapse: collapse;
+}
+
+table.main.list tr:nth-of-type(odd) {
+  background-color: #ddd;
+}
+table.main.list tr:nth-of-type(even) {
+  background-color: #eee;
+}
+table.main.list tr:first-of-type {
+  background-color: #aaa;
+}
+table.main.list tr:hover {
+  background-color: #999;
+  cursor: pointer;
+}
+
+table.main.list th {
+  border-top: 1px solid #777;
+}
+
+table.main.list th,
+table.main.list td {
+  text-align: left;
+  padding: 5px 8px;
+  border-bottom: 1px solid #777;
+  border-right: 1px solid #777;
+}
+
+table.main.list th:last-of-type,
+table.main.list td:last-of-type {
+  border-right: none;
+}
