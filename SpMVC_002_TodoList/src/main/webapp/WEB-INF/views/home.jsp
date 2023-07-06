@@ -22,6 +22,11 @@
 				type="time" placeholder="작성시각"/>
 			<input name="to_content" placeholder="할일"/>
 		</form>
+		<c:forEach begin="1" end="254" var="ip">
+			<a href="http://192.168.4.${ip}:8080/todolist" target=_new>
+				${ip}
+			</a>
+		</c:forEach>
 		<table class="list">
 			<c:if test="${empty TODOS}">
 				<tr><td>데이터가 없습니다</td></tr>
