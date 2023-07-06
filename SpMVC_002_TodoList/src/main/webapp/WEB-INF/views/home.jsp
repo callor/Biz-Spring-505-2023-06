@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>나의 TODO List</title>
-<link href="${rootPath }/static/css/main.css?2023-07-06-008" 
+<link href="${rootPath }/static/css/main.css?2023-07-06-010" 
 		rel="stylesheet">
 </head>
 <body>
@@ -15,17 +15,24 @@
 		<h1>반갑습니다</h1>
 	</header>
 	<section class="main">
-		<form>
-			<input placeholder="작성일자"/>
-			<input placeholder="작성시각"/>
-			<input placeholder="할일"/>
+		<form class="main">
+			<input name="to_sdate" value="${TODO.to_sdate}" 
+				type="date" placeholder="작성일자"/>
+			<input name="to_stime" value="${TODO.to_stime}" 
+				type="time" placeholder="작성시각"/>
+			<input name="to_content" placeholder="할일"/>
 		</form>
-		<table>
-			<tr>
-				<td>2023-07-06</td>
-				<td>14:20:00</td>
-				<td>팀프로젝트</td>
-			</tr>
+		<table class="list">
+			<c:if test="${empty TODOS}">
+				<tr><td>데이터가 없습니다</td></tr>
+			</c:if>
+			<c:forEach items="${TODOS}" var="TO">
+				<tr>
+					<td>${TO.to_sdate}</td>
+					<td>${TO.to_stime}</td>
+					<td>${TO.to_content}</td>
+				</tr>
+			</c:forEach>
 		</table>
 	</section>
 </body>

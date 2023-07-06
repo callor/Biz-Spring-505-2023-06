@@ -2,15 +2,23 @@ package com.callor.todo.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+import com.callor.todo.dao.TodoDao;
 import com.callor.todo.models.TodoDto;
 import com.callor.todo.service.TodoService;
 
+@Service
 public class TodoServiceImplV1 implements TodoService {
+
+	protected final TodoDao todoDao;
+	public TodoServiceImplV1(TodoDao todoDao) {
+		this.todoDao = todoDao;
+	}
 
 	@Override
 	public List<TodoDto> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return todoDao.selectAll();
 	}
 
 	@Override
@@ -21,8 +29,7 @@ public class TodoServiceImplV1 implements TodoService {
 
 	@Override
 	public int insert(TodoDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return todoDao.insert(dto);
 	}
 
 	@Override
