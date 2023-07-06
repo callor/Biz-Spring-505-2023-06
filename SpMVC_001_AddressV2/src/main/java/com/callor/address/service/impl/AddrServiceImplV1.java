@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.callor.address.dao.AddrDao;
 import com.callor.address.dao.BuyerDao;
@@ -88,6 +89,7 @@ public class AddrServiceImplV1 implements AddrService {
 		return addrDao.selectAll();
 	}
 
+	@Transactional
 	@Override
 	public AddrDto findById(String id) {
 		

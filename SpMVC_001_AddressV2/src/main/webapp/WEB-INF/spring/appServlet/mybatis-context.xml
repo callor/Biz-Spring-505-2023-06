@@ -21,14 +21,14 @@
 	-->
 	<bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
 		<property name="username" value="addr"/>
 		<property name="password" value="12341234"/>
 	</bean>
 	
 	<bean id="mySQL_DS" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/addrDB"/>
+		<property name="url" value="jdbc:mysql://192.168.4.98:3306/addrDB"/>
 		<property name="username" value="root"/>
 		<property name="password" value="!Biz8080"/>
 	</bean>
@@ -52,6 +52,22 @@
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
+	
+	<!-- 
+	transactionManager 객체와 연계하여 Annotation 방식으로 
+	transaction 을 관리 하도록 설정하겠다
+	만약 transactionManager 의 id 가 transactionManager 일 경우
+	transaction-manager="transactionManager" 속성은 생략 가능하다 
+	-->
+	<tx:annotation-driven 
+		transaction-manager="transactionManager"/>
+	
+	<!-- DBMS 와 연계하여 Transaction 을 자동화 시킬 객체 -->
+	<bean id="transactionManager" 
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="mySQL_DS"/>
+	</bean>
+	
 	
 	<!-- 
 	mybatis 야 ...dao page 에 있는 interface 를 scan 하여
