@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	<!-- dataSource -->
+	<bean id="dataSouce" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/todoDB"/>
+		<property name="username" value="todo"/>
+		<property name="password" value="88888888"/>
+	</bean>
+	
+	<!-- mybatis 설정 2가지 -->
+	<!-- SqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	
+		<!-- dataSource  연결 -->
+		<property name="dataSource" ref="dataSouce"/>
+		
+		<!-- Dto, Vo 클래스가 저장된 폴더(package) 지정하기 -->
+		<!-- mybatis 가 SQL 과 Dto(vo)와 코드를 연계할때 참조하기 위해 -->
+		<property name="typeAliasesPackage" value="com.callor.todo.models"/>
+		
+		<!-- mapper.xml 을 사용하여 SQL 을 작성하는데 -->
+		<!-- mapper.xml 이 저장될 폴더와 파일 규칙을 지정하기 -->
+		<property name="mapperLocations" 
+				value="/WEB-INF/spring/mapper/*-mapper.xml"/>
+	</bean>
+	
+	<!-- SqlSessionTemplate -->
+	<!-- SqlSessionFactory 가 사용할 Session 설계도 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+	
+	<!-- 
+	com.callor.todo.dao 패키지를 스캔하여 
+	interface 를 객체로 생성 
+	-->
+	<mybatis-spring:scan base-package="com.callor.todo.dao"/>
+	
+	<!-- Transaction 설정하기 위한 추가 사항 -->
+
+	<!-- transaction 활성화 -->
+	<tx:annotation-driven/>
+	
+	<!-- transactionManage Bean 설정 -->	
+	<bean id="transactionManager" 
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSouce"/>
+	</bean>
+
+</beans>

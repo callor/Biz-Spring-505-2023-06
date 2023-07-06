@@ -1,0 +1,40 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  width: 100vw;
+}
+
+body {
+  width: 100%;
+}
+
+header {
+  width: 60%;
+  /* top :100px left,Right auto, bottom : 0 */
+  margin: 100px auto 0;
+  /* gradient 표현하기 */
+  /* 
+  방향 to right : 왼쪽에서 오른쪽으로 
+      기본값은 to bottom : 위에서 아래로
+  시작색상
+  종료색상
+  */
+  background-image: linear-gradient(
+    to right,
+    green,
+    rgb(132, 236, 132)
+  );
+
+  padding: 1.2rem;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+section.main {
+  width: 60%;
+  margin: 10px auto;
+}
