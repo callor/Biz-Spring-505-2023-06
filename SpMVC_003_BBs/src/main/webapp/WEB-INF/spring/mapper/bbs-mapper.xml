@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- bbs-mapper.xml 과 dao.BBsDao interface를 연동하겠다 -->
+<mapper namespace="com.callor.bbs.dao.BBsDao">
+
+	<select id="findUserSelectLimit">
+		SELECT B.b_seq, B.b_pseq, B.b_date,
+		B.b_time, B.b_username, U.nickname,
+		B.b_subject, B.b_content, B.b_count, B.b_update  
+		FROM tbl_bbs B, tbl_user U
+		WHERE B.b_username = U.username
+		LIMIT 10
+	</select>
+
+</mapper> 

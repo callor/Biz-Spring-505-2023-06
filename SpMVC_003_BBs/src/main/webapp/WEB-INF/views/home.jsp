@@ -19,20 +19,26 @@
 			<th>SEQ</th>
 			<th>작성시각</th>
 			<th>작성일자</th>
-			<th>닉네임</th>
+			<th>작성자</th>
 			<th>제목</th>
 			<th>조회수</th>
 		</tr>
-		<c:forEach begin="1" end="10" var="INDEX">
+		<c:forEach items="${BBS_LIST}" var="BBS">
 			<tr>
-				<td>${INDEX}</td>
-				<td>작성시각</td>
-				<td>작성일자</td>
-				<td>닉네임</td>
-				<td>제목</td>
-				<td>조회수</td>
+				<td>${BBS.b_seq}</td>
+				<td>${BBS.b_date}</td>
+				<td>${BBS.b_time}</td>
+				<td>
+				<a href="${rootPath}/search/user?username=${BBS.b_username}">
+					${BBS.nickname}
+				</a>
+				</td>
+				<td>
+				<a href="${rootPath}/detail?seq=${BBS.b_seq}">${BBS.b_subject}</a>
+				</td>
+				<td>${BBS.b_count}</td>
 			</tr>
-		</c:forEach>	
+		</c:forEach>
 	</table>
 
 </body>

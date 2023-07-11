@@ -22,9 +22,22 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
-		List<BBsDto> bbsList = bbsDao.selectAll();
+//		List<BBsDto> bbsList = bbsDao.selectAll();
+		List<BBsDto> bbsList = bbsDao.findUserSelectLimit();
 		model.addAttribute("BBS_LIST", bbsList);
 		return "home";
 	}
+	
+	@RequestMapping(value="/detail",method=RequestMethod.GET)
+	public String detail(String seq,Model model) {
+		
+		BBsDto bbsDto = bbsDao.findById(seq);
+		model.addAttribute("BBS",bbsDto);
+		return "detail";
+		
+	}
+	
+	
+	
 	
 }
