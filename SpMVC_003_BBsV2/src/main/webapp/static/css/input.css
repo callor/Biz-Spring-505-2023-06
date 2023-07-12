@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+form.main {
+  width: 60%;
+  margin: 10px auto;
+  border: 1px solid #aaa;
+  border-radius: 15px;
+}
+form.main div {
+  width: 80%;
+  margin: 5px auto;
+  padding: 5px;
+  display: flex;
+}
+
+form.main label,
+form.main input {
+  padding: 8px;
+  margin: 5px;
+}
+
+form.main label {
+  flex: 1;
+  text-align: right;
+  font-weight: bold;
+  color: rgb(107, 107, 217);
+}
+form.main input {
+  flex: 3;
+}
+
+form.main div.button-box {
+  text-align: right;
+  border: 1px solid blue;
+}
+
+form.main div.button-box button {
+  color: white;
+  background-color: blue;
+  padding: 12px 16px;
+}
+form.main div.button-box button:hover {
+  box-shadow: 2px 2px 2px black;
+}
