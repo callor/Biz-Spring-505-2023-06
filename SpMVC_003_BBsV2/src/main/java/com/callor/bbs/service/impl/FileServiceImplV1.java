@@ -9,12 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.callor.bbs.config.QualifierConfig;
 import com.callor.bbs.service.FileService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service
+// @Service("fileServiceV1");
+@Service(QualifierConfig.SERVICE.FILE_V1)
 public class FileServiceImplV1 implements FileService {
 
 	// 서버의 폴더 등 자원(Resource)에 접근할때 사용할 객체
