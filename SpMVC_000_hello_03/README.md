@@ -12,3 +12,4 @@
 - action 은 서버로 데이터를 보낼때 사용할 URL(URI) 이다
 - 만약 action 을 생략하면, 입력화면을 보여줄때 사용한 URI가 자동으로 설정된다
 - form 으로 감싼 button 은 자동으로 submit event 가 설정된다. submit : 입력화면에서 입력한 데이터를 서버로 전송하는 event 이다.
+

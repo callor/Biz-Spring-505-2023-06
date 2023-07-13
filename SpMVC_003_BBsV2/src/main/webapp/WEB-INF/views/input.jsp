@@ -26,5 +26,9 @@
 		</div>
 		<div class="button-box"><button>저장하기</button></div>
 	</form>
+	<div>
+		<img src="${rootPath}/files/${FILE_NAME}"  width="100px"/>
+	</div>
+	
 </body>
 </html>
