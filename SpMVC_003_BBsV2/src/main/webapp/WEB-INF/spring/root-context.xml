@@ -4,5 +4,20 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 
+	Dispatcher Servlet 이 multipart/form-data 형식의 Reqeust 데이터를 
+	처리하는데 사용할 객체
+	이 객체의 이름은 반드시 multipartResolver
+	이 객체(bean)에는 3가지 속성을 지정한다
+	defaultEncoding, maxUploadSize, maxUploadPerFile
+	최근 프로젝트에서는 defaultEncoding 은 선택사항이다
+	maxUploadSize 와 maxUpLoadSizePerFile 은 반드시 설정해야 한다
+	파일을 업로드 할때 이 Size 보다 큰 파일은 서버에서 거부한다.
+	-->
+	<bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="maxUploadSize" value="20000000"/>
+		<property name="maxUploadSizePerFile" value="2000000"/>
+	</bean>
 		
 </beans>
