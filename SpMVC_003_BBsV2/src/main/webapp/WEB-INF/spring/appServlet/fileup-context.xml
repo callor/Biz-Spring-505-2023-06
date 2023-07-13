@@ -31,7 +31,7 @@
 	 -->
 	<mvc:resources mapping="/files/**" location="/files/,
 					file:///c:/app/upload/,
-					file:///Users/callor/Document/workspace/files/"
+					file:///Users/callor/Documents/workspace/files/"
 			/>
 	<task:annotation-driven/>
 	
