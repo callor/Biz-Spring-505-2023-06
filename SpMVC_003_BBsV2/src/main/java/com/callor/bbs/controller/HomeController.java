@@ -3,8 +3,6 @@ package com.callor.bbs.controller;
 import java.util.List;
 import java.util.Locale;
 
-import javax.swing.plaf.multi.MultiFileChooserUI;
-
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,26 +70,38 @@ public class HomeController {
 	 */
 
 	@RequestMapping(value="/insert",method=RequestMethod.POST)
+	/*
+	 * 매개변수 설명
+	 * BBDto bbsDto
+	 * 	: input tag에 입력한 게시판 관련 text 를 받는 곳
+	 * MultipartFile b_file
+	 * 	: input tag 의 type="file" 에서 선택한 파일을 받는 곳
+	 */
 	public String insert(
-			
-		@RequestParam(value="b_username") String username,
+		BBsDto bbsDto,
 		@RequestParam(value="b_file") MultipartFile b_file,
 		Model model
 		) {
 		
-		log.debug("사용자이름 : {}",username);
+		log.debug("사용자이름 : {}",bbsDto.getB_username());
 		log.debug(b_file.getOriginalFilename());
 		
-		String fileName = "";
+		String fileName = null;
 		try {
 			fileName = fileService.fileUp(b_file);
+			bbsDto.setB_image(fileName);
+			int result = bbsDao.insert(bbsDto);
+			return "redirect:/";
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// e.printStackTrace();
+			log.debug("파일을 업로드 할수 없음 오류 발생!!");
+			return "redirect:/insert?error=FILE_UP_ERROR";
 		}
 		
-		model.addAttribute("FILE_NAME",fileName);
-		return "input";
+//		model.addAttribute("FILE_NAME",fileName);
+//		return "input";
 		
 	}
 

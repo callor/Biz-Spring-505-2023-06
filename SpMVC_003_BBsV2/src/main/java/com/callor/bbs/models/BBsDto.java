@@ -23,6 +23,7 @@ public class BBsDto {
 	private String b_subject;//	varchar(125)
 	private String b_content;//	text
 	private int b_count;//	int
+	private String b_image;
 	// b_update;//	datetime
 
 }

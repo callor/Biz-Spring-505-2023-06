@@ -34,4 +34,37 @@
 - 생성한 bean 을 직접 핸들링 하지 않고, 이 bean 은 Dispatcher Servlet 이 알아서 사용하는 bean
 - `root-context.xml` 을 사용하여 전역적(global public) 세팅을 수행한다.
 
+## 이미지 파일을 업로드 하기
+- 이미지 파일을 업로드 하는 방법은 원리적으로 이해를 하기에는 학습 분량이 너무 많다.
+- 절차적인 방법으로 구현을 해 보자.
+1. html 의 form 을 사용하여 파일을 업로드하는 속성 부여
+2. 파일을 선택하기 위한 input tag 에 `type` 속성 부여
+3. 이미지 파일을 선택하기 위하여 `accept` 속성
 
+```html
+<form method="POOST" encType="multipart/form-data">
+    <input type="file" name="b_name" accept="image/*" />
+</form>
+``` 
+4. controller 의 MultipartFile 객체를 매개변수로 사용하여 파일 정보를 수신한다.
+```java
+
+@RequestParam(value="b_file") 
+MultipartFile b_file,
+```
+5. FileService 의 fileUp() method 를 통하여, 서버의 이미지 업로드 폴더에 파일 `transfer(전송)` 하기
+
+6. fileUp() method 에서는 저장한 파일이름을 return
+7. fileUp() method 가 return 한 파일이름을 DB 의 table 에 저장한다.
+* 이미지를 업로드 할때는 이미지 자체를 DB에 저장하지 않고, 이미지는 서버의 폴더에 저장하고, `이미지 파일 이름만` DB 의 Table 에 저장한다. 이미지를 DB 에 직접 저장하면 DB 성능에 막대한 문제가 발생한다
+
+
+## 파일 업로드 해킹
+- 해커가 이미 업로드된 파일의 이름을 알게 되는 경우, 같은 이름으로 다른 이미지를 다른 게시물에 업로드를 할 경우 이미 업로드된 파일이 변경되어 실제와 다른 것을 보이게 하는 단순한 해킹 행위
+- 이러한 해킹을 방지하기 위하여, 파일을 업로드 할때 원래이름(originalName)과 다른 방식으로 이름을 변형하여 업로드를 해야 한다.
+- 일반적으로 파일을 업로드 할때는 원래 이름(OriginaName)에 다른 키값을 부착하여 이름을 변형한다
+- 여기에서는 UUID 클래스 제공하는 키값 생성 method 를 사용하여 UUID 키값을 만들고 파일에 부착하여 업로드 한다
+
+## 여러 파일 업로드 설계
+- 여러개의 파일을 업로드 하게 하려면 실제 데이터 테이블과 파일정보를 저장하는 테이블을 1:N 의 관계로 생성해 둔다
+- 데이터 테이블에서 생성된 ID(SEQ) 값과 함께 파일정보 테이블에 파일이름들을 저장한다.

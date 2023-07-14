@@ -14,9 +14,13 @@ public interface BBsDao {
 	public List<BBsDto> findUserSelectLimit();
 	
 	@Select(" SELECT * "
-			+ " FROM tbl_bbs,tbl_user "
-			+ " WHERE b_username = username AND b_seq = #{seq}")
+			+ " FROM tbl_bbs"
+			+ "  LEFT JOIN tbl_user "
+			+ " 	ON b_username = username "
+			+ " WHERE b_seq = #{seq}")
 	public BBsDto findById(String seq);
+
+	public int insert(BBsDto bbsDto);
 
 }
 
