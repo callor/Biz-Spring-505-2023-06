@@ -1,15 +1,21 @@
 package com.callor.bbs.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.bbs.config.QualifierConfig;
 import com.callor.bbs.dao.BBsDao;
@@ -56,9 +62,25 @@ public class HomeController {
 		return "home";
 	}
 	
+	/*
+	 * @ModelAttribute("BBS")
+	 * GET /insert 가 호출될때
+	 * 아직 bbsDto 객체는 null 인 상태이다
+	 * bbsDto 가 null 인 경우
+	 * 어딘가에 @ModelAttribute("BBS") 라는 이름이 부착된
+	 * method 를 찾는다
+	 * 만약 method 가 발견되면 자동으로 해당 method 를 호출하여
+	 * 데이터를 준비해 준다
+	 */
 	@RequestMapping(value="/insert",method=RequestMethod.GET)
-	public String insert() {
+	public String insert(
+			@ModelAttribute("BBS")
+			BBsDto bbsDto) {
+		
+//		model.addAttribute("BBS",bbsDto);
+		
 		return "input";
+		
 	}
 	
 	/*
@@ -79,7 +101,13 @@ public class HomeController {
 	 */
 	public String insert(
 		BBsDto bbsDto,
+		// 싱글파일 업로드용
 		@RequestParam(value="b_file") MultipartFile b_file,
+		
+		// 멀티파일 업로드용
+		// @ReqeustParam 부착 금지 400 오류 발생
+		MultipartHttpServletRequest b_images,
+		
 		Model model
 		) {
 		
@@ -108,15 +136,47 @@ public class HomeController {
 	
 	
 	@RequestMapping(value="/detail",method=RequestMethod.GET)
-	public String detail(String seq,Model model) {
+	public String detail(
+			String seq,
+			BBsDto bbsDto,Model model) {
 		
-		BBsDto bbsDto = bbsDao.findById(seq);
+		bbsDto = bbsDao.findById(seq);
 		model.addAttribute("BBS",bbsDto);
+		
 		return "detail";
 		
 	}
 	
 	
+	@ModelAttribute("BBS")
+	public BBsDto getBBsDto() {
+		BBsDto bbsDto = new BBsDto();
+		
+		Date date = new Date(System.currentTimeMillis());
+		Calendar calendar = Calendar.getInstance();
+
+		// 현재날짜와 시간 getter 하기
+		LocalDateTime localDateTime = LocalDateTime.now();
+		
+		// 날짜를 문자열로 변환하기 위한 pattern 생성
+		DateTimeFormatter dateFormatter 
+			= DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		// 시간을 문자열로 변환하기 위한 pattern 생성
+		DateTimeFormatter timeFormatter
+			= DateTimeFormatter.ofPattern("HH:mm:ss");
+	
+		// 날짜 형식의 데이터를 문자열로 변환
+		String strDate = localDateTime.format(dateFormatter);
+		// 시간 형식의 데이터를 문자열로 변환
+		String strTime = localDateTime.format(timeFormatter);
+	
+		bbsDto.setB_date(strDate);
+		bbsDto.setB_time(strTime);
+		bbsDto.setB_username("callor");
+		
+		return bbsDto;
+	}
+
 	
 	
 }
