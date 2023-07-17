@@ -115,10 +115,26 @@ public class HomeController {
 		log.debug(b_file.getOriginalFilename());
 		
 		String fileName = null;
+ 
 		try {
-			fileName = fileService.fileUp(b_file);
-			bbsDto.setB_image(fileName);
-			int result = bbsDao.insert(bbsDto);
+			if( !b_file.getOriginalFilename().isEmpty() ) {
+				fileName = fileService.fileUp(b_file);
+				bbsDto.setB_image(fileName);
+			}
+//			int result = bbsDao.insert(bbsDto);
+
+			// 멀티파일 업로드가 실행되었을때 만 filesUp() 호출
+			
+			// getFiles().size()
+			// b_image 를 List 로 변환하고 개수 세기
+			
+			// getFile().getSize(),
+			// 업로드한 파일의 개수가 담긴 변수값 참조
+			
+			if(b_images.getFile("b_images").getSize() > 0) {
+				fileService.filesUp(b_images);
+			}
+			
 			return "redirect:/";
 			
 		} catch (Exception e) {

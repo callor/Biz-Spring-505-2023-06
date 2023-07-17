@@ -16,7 +16,7 @@
 		
 	</select>
 	
-	<insert id="insert">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="b_seq">
 		INSERT INTO tbl_bbs(
 			b_pseq,		b_date,		b_time,		b_username,
 			b_subject,	b_content,	b_count,	b_image
@@ -24,6 +24,10 @@
 			#{b_pseq},		#{b_date},		#{b_time},	#{b_username},
 			#{b_subject},	#{b_content},	#{b_count},	#{b_image}
 		)
+		<selectKey databaseId="mysql" 
+				keyColumn="b_seq" keyProperty="b_seq">
+			SELECT LAST_INSERT_ID()
+		</selectKey>		
 	</insert>
 
 </mapper> 

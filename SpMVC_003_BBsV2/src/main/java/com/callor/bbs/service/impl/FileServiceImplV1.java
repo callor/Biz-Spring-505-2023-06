@@ -60,7 +60,12 @@ public class FileServiceImplV1 implements FileService {
 
 	@Override
 	public List<String> filesUp(MultipartHttpServletRequest files) throws Exception {
-		// TODO Auto-generated method stub
+
+		List<MultipartFile> fileList = files.getFiles("b_images");
+		for(MultipartFile file : fileList) {
+			String fileName = this.fileUp(file);
+			log.debug(fileName);
+		}
 		return null;
 	}
 
