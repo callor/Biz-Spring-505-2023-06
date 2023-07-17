@@ -28,6 +28,11 @@
 				keyColumn="b_seq" keyProperty="b_seq">
 			SELECT LAST_INSERT_ID()
 		</selectKey>		
+		<selectKey databaseId="oracle" order="BEFORE" 
+				keyColumn="b_seq" keyProperty="b_seq" >
+			SELECT SEQ_BBS.NEXTVAL FROM DUAL
+		</selectKey>
+		
 	</insert>
 
 </mapper> 

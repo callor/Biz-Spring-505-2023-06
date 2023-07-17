@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- bbs-mapper.xml 과 dao.BBsDao interface를 연동하겠다 -->
+<mapper namespace="com.callor.bbs.dao.FileDao">
+
+	<insert id="insert" >
+		INSERT INTO tbl_images
+		(i_bseq, i_originalName, i_uploadName)
+		<foreach collection="list" item="DTO" separator="," open="VALUES">
+			(#{b_seq}, #{DTO.i_originalName}, #{DTO.i_uploadName} )		
+		</foreach>
+	</insert>	
+		
+
+
+</mapper> 
+
+

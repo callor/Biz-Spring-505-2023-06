@@ -19,7 +19,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.bbs.config.QualifierConfig;
 import com.callor.bbs.dao.BBsDao;
+import com.callor.bbs.dao.FileDao;
 import com.callor.bbs.models.BBsDto;
+import com.callor.bbs.models.FileDto;
 import com.callor.bbs.service.FileService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -44,13 +46,15 @@ public class HomeController {
 	protected final FileService fileService;
 	
 	private final BBsDao bbsDao;
+	private final FileDao fileDao;
 	public HomeController(
 			@Qualifier(QualifierConfig.SERVICE.FILE_V2) 
 			FileService fileService,
-			
+			FileDao fileDao,
 			BBsDao bbsDao) {
 		this.fileService = fileService;
 		this.bbsDao = bbsDao;
+		this.fileDao = fileDao;
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -121,7 +125,8 @@ public class HomeController {
 				fileName = fileService.fileUp(b_file);
 				bbsDto.setB_image(fileName);
 			}
-//			int result = bbsDao.insert(bbsDto);
+			int result = bbsDao.insert(bbsDto);
+			log.debug("새로생성된 PK : {}", bbsDto.getB_seq());
 
 			// 멀티파일 업로드가 실행되었을때 만 filesUp() 호출
 			
@@ -130,16 +135,15 @@ public class HomeController {
 			
 			// getFile().getSize(),
 			// 업로드한 파일의 개수가 담긴 변수값 참조
-			
 			if(b_images.getFile("b_images").getSize() > 0) {
-				fileService.filesUp(b_images);
+				List<FileDto> files = fileService.filesUp(b_images);
+				fileDao.insert(files,bbsDto.getB_seq()) ; // , bbsDto.getB_seq());
 			}
-			
 			return "redirect:/";
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			// e.printStackTrace();
+			 e.printStackTrace();
 			log.debug("파일을 업로드 할수 없음 오류 발생!!");
 			return "redirect:/insert?error=FILE_UP_ERROR";
 		}
@@ -157,7 +161,10 @@ public class HomeController {
 			BBsDto bbsDto,Model model) {
 		
 		bbsDto = bbsDao.findById(seq);
+		List<FileDto> files = fileDao.findByBSeq(bbsDto.getB_seq());
+		
 		model.addAttribute("BBS",bbsDto);
+		model.addAttribute("FILES",files);
 		
 		return "detail";
 		

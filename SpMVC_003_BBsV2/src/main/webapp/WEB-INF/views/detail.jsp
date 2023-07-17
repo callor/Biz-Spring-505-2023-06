@@ -9,6 +9,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	p.image_list {
+		width: 60%;
+		margin:10px auto;
+		display: flex;
+	}
+</style>
 </head>
 <body>
 	<p>${BBS.b_seq}
@@ -18,8 +25,23 @@
 	<p>${BBS.nickname}
 	<p>${BBS.b_subject}
 	<p>${BBS.b_content}
-	<p><img src="${rootPath}/files/${BBS.b_image}"  
-			width="200px" /> 
+	<p>
+	<c:if test="${empty BBS.b_image }">
+		<img src="${rootPath}/static/no_image.png" width="200px" /> 
+	</c:if>
+	<c:if test="${not empty BBS.b_image}">
+		<img src="${rootPath}/files/${BBS.b_image}" width="200px" /> 
+	</c:if>
+
+	<c:if test="${not empty FILES }">
+		<p class="image_list">
+			<c:forEach items="${FILES}" var="FILE">
+				<img src="${rootPath}/files/${FILE.i_uploadName}" 
+				width="100px"  />
+				<span>&times;</span>
+			</c:forEach>
+		</p>		
+	</c:if>			
 </body>
 </html>
 
