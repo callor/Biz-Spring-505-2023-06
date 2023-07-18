@@ -9,7 +9,11 @@
 <title>MY CAR</title>
 <link href="${rootPath}/static/css/main.css"  rel="stylesheet">
 <link href="${rootPath}/static/css/input.css"  rel="stylesheet">
-
+<script>
+	// JS 파일에서 rootPath 정보를 
+	// 사용할수 있도록 전역(global) 변수로 선언
+	var rootPath = "${rootPath}"
+</script>
 <script src="${rootPath}/static/js/main_input.js"></script>
 <script src="${rootPath}/static/js/main_input_validation.js"></script>
 </head>
