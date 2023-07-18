@@ -170,6 +170,22 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value="/image_delete" ,method=RequestMethod.GET)
+	public String image_delete(String seq) {
+		
+		/*
+		 * 파일정보를 SELECT 하고
+		 * 물리적 파일을 삭제하고
+		 * 파일정보 데이터 삭제
+		 */
+		long seqNum = Long.valueOf(seq);
+		FileDto fileDto = fileDao.findByid(seqNum);
+		fileService.delete(fileDto.getI_uploadName());
+		int result = fileDao.delete(seqNum);
+		return "redirect:/detail?seq=" + fileDto.getI_bseq();
+	}
+	
+	
 	
 	@ModelAttribute("BBS")
 	public BBsDto getBBsDto() {

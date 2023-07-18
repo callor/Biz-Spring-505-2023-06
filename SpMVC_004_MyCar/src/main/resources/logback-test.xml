@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+logback(classic)이 실행되는 상태를 제어할때 사용하는 세팅파일
+logback 은 src/main/resources 폴더에서
+	logback-test.xml, logback.xml, logback.properties 파일을 순서대로
+	찾아본다. 만약 파일이 있으면 해당 파일을 읽어서
+	프로젝트가 시작될때 사용한다
+-->
+<configuration scan="true" scanPeriod="3 seconds">
+	<!-- 
+	logback 이 console 에 출력하는 메시지 포멧 설정 
+	String.format 처럼 사용하는 설정
+	-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <!-- 대문자 C{length} : 로깅 요청을 발행하는 호출자의 정규화된 클래스 이름을 출력 -->
+            <!-- 클래스 class{length} : 로깅 요청을 발행하는 호출자의 정규화된 클래스 이름을 출력 -->
+            
+            <!-- 소문자 c{length}  : 로깅 이벤트의 출처에서 로거의 이름을 출력합니다. -->
+            <!-- 로거 logger{length}  : 로깅 이벤트의 출처에서 로거의 이름을 출력합니다. -->
+            <Pattern> [%-5level] %c{5} - %msg %F %n</Pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="DEBUG" />
+    
+    <logger name="com.callor.car" level="DEBUG"  additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

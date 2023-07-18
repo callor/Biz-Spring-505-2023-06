@@ -2,6 +2,7 @@ package com.callor.bbs.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -15,15 +16,15 @@ public interface FileDao {
 			);
 	
 	public List<FileDto> selectAll();
-	public FileDto findByid(long id);
 	
+	@Select("SELECT * FROM tbl_images WHERE i_seq = #{id}")
+	public FileDto findByid(long id);
 	
 	// 게시판과 연결할때 사용할 method
 	@Select("SELECT * FROM tbl_images WHERE i_bseq = #{b_seq}")
 	public List<FileDto> findByBSeq(long b_seq);
-	
-	
-	
-	
+
+	@Delete("DELETE FROM tbl_images WHERE i_seq = #{seqNum}")
+	public int delete(long seqNum);
 
 }

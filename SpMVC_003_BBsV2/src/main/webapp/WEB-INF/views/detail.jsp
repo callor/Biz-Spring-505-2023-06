@@ -10,12 +10,46 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	p.image_list {
+	div.image_list {
 		width: 60%;
 		margin:10px auto;
 		display: flex;
 	}
+	div.image {
+		position: relative;
+	}
+	
+	div.image span {
+		color:white;
+		text-shadow: 1px 1px 1px black;
+		font-weight: bold;
+		
+		position: absolute;
+		top:5px;
+		right:5px;
+		cursor: pointer;
+		
+		opacity: 0;
+		transition : 0.7s;
+	}
+	
+	div.image:hover span {
+		opacity: 1;
+	}
+	
+	div.image img {
+		transition : 0.7s
+	}
+	div.image:hover img {
+		opacity: 0.7;
+	}
+	
+	
 </style>
+<script>
+	var rootPath ="${rootPath}"
+</script>
+<script src="${rootPath}/static/js/detail.js?20230717-001"></script>
 </head>
 <body>
 	<p>${BBS.b_seq}
@@ -34,13 +68,18 @@
 	</c:if>
 
 	<c:if test="${not empty FILES }">
-		<p class="image_list">
+		<div class="image_list">
 			<c:forEach items="${FILES}" var="FILE">
-				<img src="${rootPath}/files/${FILE.i_uploadName}" 
-				width="100px"  />
-				<span>&times;</span>
+				<div class="image">
+					<img src="${rootPath}/files/${FILE.i_uploadName}" 
+						width="100px">
+					<span data-seq="${FILE.i_seq}" 
+							data-filename="${FILE.i_originalName }">
+							&times;
+					</span>
+				</div>
 			</c:forEach>
-		</p>		
+		</div>		
 	</c:if>			
 </body>
 </html>
