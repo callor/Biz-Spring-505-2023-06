@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const inputs = document.querySelectorAll("form.main input");
+  const input_carnum = document.querySelector(
+    "input[name='c_carnum']"
+  );
+  const input_skm = document.querySelector("input[name='c_skm']");
+  const input_qty = document.querySelector("input[name='c_qty']");
 
-  inputs[INPUT_INDEX.C_CARNUM].addEventListener("blur", (e) => {
+  input_carnum?.addEventListener("blur", (e) => {
     const value = e.target.value;
     const error_carnum = document.querySelector("div.error.c_carnum");
 
@@ -18,14 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
             error_carnum.classList.add("on");
             error_carnum.innerHTML = "* 없는 차량번호 입니다";
           } else {
-            document.querySelector("input[name='c_skm']").value =
-              result.c_skm;
+            input_skm.value = result.c_skm;
           }
         });
     }
   });
-  const qty_input = document.querySelector("input[name='c_qty']");
-  qty_input?.addEventListener("blur", (e) => {
+  input_qty?.addEventListener("blur", (e) => {
     const value = e.target.value;
     if (!value) {
       const error_qty = document.querySelector("div.error.c_qty");
