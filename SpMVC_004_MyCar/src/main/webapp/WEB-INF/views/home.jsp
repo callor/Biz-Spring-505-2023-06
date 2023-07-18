@@ -7,9 +7,32 @@
 <head>
 <meta charset="UTF-8">
 <title>MY CAR</title>
+<link href="${rootPath}/static/css/main.css"  rel="stylesheet">
 </head>
 <body>
-	<h1>MY CAR</h1>
+	<header class="main">
+		<h1>my car</h1>
+		<p>MY CAR MANAGER 2023</p>
+	</header>
+	<nav class="main">
+		<ul>
+			<li>Home</li>
+			<li>내차등록</li>
+			<li>차량운행</li>
+			
+			<li>로그인</li>
+			<li>회원가입</li>
+	
+			<li>로그아웃</li>
+			<li>마이페이지</li>		
+		</ul>
+	</nav>
+	<section class="main">
+		<%@ include file="/WEB-INF/views/car/input.jsp" %>
+	</section>
+	<footer>
+		<address>CopyRight &copy; callor@callor.com All Right Reserved</address>
+	</footer>
 </body>
 </html>
 
