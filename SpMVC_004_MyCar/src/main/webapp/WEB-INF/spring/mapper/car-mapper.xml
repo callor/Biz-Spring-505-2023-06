@@ -5,6 +5,13 @@
   
  <mapper namespace="com.callor.car.persistance.CarDao">
  
+ 	<select id="findTachoByCarNum">
+	 	SELECT * FROM tbl_carmanager
+			WHERE c_carnum  = #{carnum}
+			ORDER BY c_sdate DESC, c_stime DESC
+		LIMIT 1
+ 	</select>
+ 
  	<select id="selectAll"></select>
  	<select id="findById"></select>
  	<insert id="insert"></insert>

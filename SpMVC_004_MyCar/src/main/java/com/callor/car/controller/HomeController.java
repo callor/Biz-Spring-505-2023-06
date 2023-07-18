@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.callor.car.model.CarDto;
+import com.callor.car.service.CarService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,6 +17,11 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class HomeController {
 	
+	protected final CarService carService;
+	public HomeController(CarService carService) {
+		this.carService = carService;
+	}
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(
 			@ModelAttribute("CAR")
@@ -23,6 +29,20 @@ public class HomeController {
 		log.debug("나는 홈 콘트롤러 입니다");
 		return "home";
 	}
+	
+	
+	@RequestMapping(value="/input",method=RequestMethod.POST)
+	public String input(
+			@ModelAttribute("CAR")
+			CarDto carDto) {
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/car_check",method=RequestMethod.GET)
+	public String findTachoByCarNum(String carnum) {
+		carService.findTachoByCarNum(carnum);
+	}
+	
 
 	@ModelAttribute("CAR")
 	public CarDto carDto() {

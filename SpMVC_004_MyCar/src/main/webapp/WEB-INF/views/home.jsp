@@ -8,6 +8,10 @@
 <meta charset="UTF-8">
 <title>MY CAR</title>
 <link href="${rootPath}/static/css/main.css"  rel="stylesheet">
+<link href="${rootPath}/static/css/input.css"  rel="stylesheet">
+
+<script src="${rootPath}/static/js/main_input.js"></script>
+<script src="${rootPath}/static/js/main_input_validation.js"></script>
 </head>
 <body>
 	<header class="main">

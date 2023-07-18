@@ -15,3 +15,31 @@ CREATE TABLE tbl_carmanager (
 	c_ekm	INT,			
 	c_cost	INT			
 );
+INSERT INTO tbl_carmanager(
+c_carnum,c_qty, c_username, c_sdate, c_stime,
+c_skm, c_ekm)
+VALUES('001','출근','callor','2023-07-01','07:00',
+3000,3010);
+INSERT INTO tbl_carmanager(
+c_carnum,c_qty, c_username, c_sdate, c_stime,
+c_skm, c_ekm)
+VALUES('001','퇴근','callor','2023-07-01','18:00',
+3010,3020);
+INSERT INTO tbl_carmanager(
+c_carnum,c_qty, c_username, c_sdate, c_stime,
+c_skm, c_ekm)
+VALUES('002','서울출장','callor','2023-07-01','07:00',
+10000,10300);
+INSERT INTO tbl_carmanager(
+c_carnum,c_qty, c_username, c_sdate, c_stime,
+c_skm, c_ekm)
+VALUES('002','출장복귀','callor','2023-07-01','18:00',
+10300,10600);
+
+
+
+
+
+
+
+
