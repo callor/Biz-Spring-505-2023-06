@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- thymeleaf 로 만들어진 view 파일을 Rendering 하는 도구 -->
+	<bean id="thViewResolver"
+		class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+		<property name="prefix" value="/WEB-INF/views/html/"/>
+		<property name="suffix" value=".html"/>
+		<property name="templateMode" value="HTML"/>
+		<property name="cacheable" value="false"/>
+	</bean>
+	<bean id="thEngine"
+		class="org.thymeleaf.spring5.SpringTemplateEngine">
+		<property name="templateResolver" ref="thViewResolver"/>
+		<property name="enableSpringELCompiler" value="true"/>
+		<property name="additionalDialects">
+			<set>
+				<bean class="nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect"/>
+			</set>
+		</property>
+	</bean>
+	<bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="thEngine"/>
+		<property name="characterEncoding" value="UTF-8"/>
+	</bean>
+</beans>

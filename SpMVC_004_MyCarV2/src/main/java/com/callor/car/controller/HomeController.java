@@ -28,7 +28,7 @@ public class HomeController {
 			@ModelAttribute("CAR")
 			CarDto carDto) {
 		log.debug("나는 홈 콘트롤러 입니다");
-		return "home";
+		return "car/input";
 	}
 	
 	

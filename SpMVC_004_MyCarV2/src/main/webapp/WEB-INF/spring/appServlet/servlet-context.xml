@@ -16,13 +16,15 @@
 	<resources mapping="/static/**" location="/static/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- 
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="prefix" value="/WEB-INF/views/jsp/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="5"/>
 	</beans:bean>
+	 -->
 	
-	<context:component-scan base-package="com.callor.car" />
-	
-	
+	<context:component-scan base-package="com.callor.car.controller" />
+	<context:component-scan base-package="com.callor.car.service.impl" />
 	
 </beans:beans>
