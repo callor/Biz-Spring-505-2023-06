@@ -12,9 +12,15 @@
 		LIMIT 1
  	</select>
  
- 	<select id="selectAll"></select>
  	<select id="findById"></select>
- 	<insert id="insert"></insert>
+ 	<insert id="insert">
+ 		INSERT INTO tbl_carmanager (
+ 			c_carnum, c_qty, c_username, c_sdate, c_stime, c_skm
+ 		) VALUES (
+ 			#{c_carnum}, #{c_qty}, #{c_username}, 
+ 					#{c_sdate}, #{c_stime}, #{c_skm}
+ 		)
+ 	</insert>
  	<update id="update"></update>
  	<delete id="delete"></delete>
  

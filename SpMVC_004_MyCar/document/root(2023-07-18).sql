@@ -36,7 +36,13 @@ c_skm, c_ekm)
 VALUES('002','출장복귀','callor','2023-07-01','18:00',
 10300,10600);
 
+COMMIT;
+SELECT * FROM tbl_carmanager
+WHERE c_carnum  = '001'
+ORDER BY c_sdate DESC, c_stime DESC
+LIMIT 1;
 
+SELECT * FROM tbl_carmanager;
 
 
 

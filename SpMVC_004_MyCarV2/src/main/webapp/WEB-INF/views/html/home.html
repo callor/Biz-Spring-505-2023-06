@@ -12,6 +12,23 @@
     <title>MY CAR</title>
     <link th:href="@{/static/css/main.css}" rel="stylesheet" />
     <link th:href="@{/static/css/input.css}" rel="stylesheet" />
+    <script th:inline="javascript">
+      /*
+      thymeleaf 에서는 rootPath(ContextPath) 가 필요할 경우 @{/} 를 사용하면 된다
+      하지만 JS 코드에서는 thymeleaf 의 변수(EL 등)을 사용할수 없다
+      html 파일에서 rootPath 를 변수에 담아 JS 코드로 전달해 주어야 한다
+
+      하지만 htmtl 파일에서 script tag 내의 영역에서도 thymeleaf 의 변수를
+      사용하는 것이 여의치 않다
+
+      1. script tag 에 th:inline="javascript" 속성을 부여한다
+      2. var rootPath = "@{/}" 처럼 사용하면 될줄았는데
+        th:line 속성때문에 thymeleaf 의 변수를 "" 로 묶으면 그 값이 사라져 버린다
+      3. 변수를 ESCAPE 방식으로 설정을 해주어야 한다
+         아래의 예제처럼 rootPath 변수를 설정한다
+      */
+      var rootPath = /*[[@{/}]]*/
+    </script>
     <script th:src="@{/static/js/main_input_validation.js}"></script>
     <script th:src="@{/static/js/main_input.js}"></script>
   </head>
