@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+header.main {
+  background-color: green;
+  padding: 1.2rem;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  text-align: center;
+}
+
+header.main h1 {
+  /* 영문자를 무조건 대문자로 표현 */
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+nav.main {
+  background-color: #5827ca;
+  padding: 0 1rem;
+}
+
+nav.main ul {
+  list-style: none;
+  display: flex;
+}
+
+nav.main li {
+  margin: 0.5rem;
+  padding: 3px 0.5rem;
+  color: white;
+  border-bottom: 3px solid transparent;
+  transition: border-bottom 0.3s ease-in-out;
+}
+
+nav.main li:nth-of-type(4) {
+  margin-left: auto;
+}
+
+nav.main li:hover {
+  border-bottom: 3px solid #fad607;
+  cursor: pointer;
+}
+
+section.main {
+  flex: 1;
+}
+
+footer {
+  background-color: #eee;
+  text-align: center;
+  text-shadow: 1px 1px 1px #fff;
+}
