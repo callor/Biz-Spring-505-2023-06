@@ -44,6 +44,7 @@ nav.main ul {
 }
 
 nav.main li {
+  white-space: nowrap;
   margin: 0.5rem;
   padding: 3px 0.5rem;
   color: white;

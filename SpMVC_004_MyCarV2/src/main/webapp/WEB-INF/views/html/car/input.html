@@ -8,51 +8,60 @@
     <form class="main" method="POST" th:action="@{/input}">
       <div class="input">
         <input
+          id="c_carnum"
           name="c_carnum"
           placeholder="차량번호"
-          value="${CAR.c_carnum}"
+          th:value="${CAR.c_carnum}"
         />
         <div class="error c_carnum"></div>
       </div>
       <div class="input">
         <input
+          id="c_qty"
           name="c_qty"
           placeholder="업무구분"
-          value="${CAR.c_qty}"
+          th:value="${CAR.c_qty}"
         />
         <div class="error c_qty"></div>
       </div>
       <div class="input">
         <input
+          id="c_username"
           name="c_username"
           placeholder="사용자"
-          value="${CAR.c_username}"
+          th:value="${CAR.c_username}"
         />
         <div class="error c_username"></div>
       </div>
       <div class="input">
         <input
+          id="c_sdate"
           name="c_sdate"
           placeholder="시작일자"
-          value="${CAR.c_sdate}"
+          th:value="${CAR.c_sdate}"
         />
         <div class="error c_sdate"></div>
       </div>
       <div class="input">
         <input
+          id="c_stime"
           name="c_stime"
           placeholder="시작시간"
-          value="${CAR.c_stime}"
+          th:value="${CAR.c_stime}"
         />
         <div class="error c_stime"></div>
       </div>
       <div class="input">
         <input
+          id="c_skm"
           name="c_skm"
           placeholder="출발 Km"
-          value="${CAR.c_skm}"
+          th:value="${CAR.c_skm}"
         />
         <div class="error c_skm"></div>
+      </div>
+      <div class="input button">
+        <button type="button">저장</button>
       </div>
     </form>
   </section>
