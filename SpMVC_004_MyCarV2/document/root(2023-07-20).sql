@@ -14,4 +14,9 @@ SHOW TABLES;
 DROP TABLE tbl_users;
 SHOW TABLES;
 
+INSERT INTO tbl_users
+(username, password,u_name, u_nickname, u_tel, u_role)
+VALUES
+('callor','12341234','홍길동','길동아','','ADMIN');
+SELECT * FROM tbl_users;
 
