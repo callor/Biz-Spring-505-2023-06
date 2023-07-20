@@ -27,7 +27,13 @@ logback 은 src/main/resources 폴더에서
     <logger name="org.springframework" level="INFO" />
     
     <!-- 현재 프로젝트(com.callor.car base-package 에서) -->
-    <logger name="com.callor.car" level="DEBUG"  additivity="false">
+    <logger name="com.callor.car.controller" level="DEBUG"  additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="com.callor.car.service" level="DEBUG"  additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="com.callor.car.persistance" level="DEBUG"  additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
 
