@@ -31,9 +31,10 @@
     </script>
     <script th:src="@{/static/js/main_input_validation.js}"></script>
     <script th:src="@{/static/js/main_input.js}"></script>
+    !
     <script th:src="@{/static/js/main_nav.js}"></script>
   </head>
-  <body>
+  <body th:with="LOGIN = ${session.LOGINUSER}">
     <header th:replace="~{include :: header}" />
     <nav th:replace="~{include :: nav}" />
 

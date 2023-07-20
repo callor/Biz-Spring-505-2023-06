@@ -7,9 +7,28 @@
 >
   <section layout:fragment="content" class="user">
     <form class="user" method="POST">
+      <div class="user error" th:if="${ERROR != null}">
+        <span th:if="${ERROR == 'USER_EMPTY'}">
+          * USERNAME을 입력해 주세요
+        </span>
+        <span th:if="${ERROR == 'PASSWORD_EMPTY'}">
+          * 비밀번호를 입력해 주세요
+        </span>
+        <span th:if="${ERROR == 'USERNAME'}">
+          * USERNAME 이 없습니다. 회원가입을 먼저 해 주세요
+        </span>
+        <span th:if="${ERROR == 'PASSWORD'}">
+          * 비밀번호가 일치하지 않습니다. 다시 로그인 해 주세요
+        </span>
+      </div>
       <div>
         <label for="username">USERNAME</label>
-        <input type="text" id="username" name="username" />
+        <input
+          type="text"
+          id="username"
+          name="username"
+          th:value="${USER.username}"
+        />
       </div>
       <div>
         <label for="password">PASSWORD</label>

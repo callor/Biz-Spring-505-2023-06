@@ -5,10 +5,14 @@
   
  <mapper namespace="com.callor.car.persistance.UserDao">
  
- 	<select id="findById"></select>
- 	<insert id="insert"></insert>
+ 	<insert id="insert">
+ 		INSERT INTO tbl_users
+			(username, password,u_name, u_nickname, u_tel, u_role)
+		VALUES
+			(#{username}, #{password},#{u_name}, 
+					#{u_nickname}, #{u_tel}, #{u_role})
+ 	</insert>
  	<update id="update"></update>
- 	<delete id="delete"></delete>
  	 
  	<select id="create_user_table">
 		CREATE TABLE IF NOT EXISTS tbl_users (

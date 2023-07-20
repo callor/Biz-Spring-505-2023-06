@@ -79,3 +79,8 @@ form.user a {
   color: blue;
   font-size: 0.7rem;
 }
+
+form.user div.error {
+  background-color: red;
+  color: white;
+}

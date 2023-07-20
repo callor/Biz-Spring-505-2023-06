@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html
+  lang="ko"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/home}"
+>
+  <th:block th:fragment="main_list">
+    <table class="main">
+      <tr>
+        <th>NO</th>
+        <th>구분</th>
+        <th>차량번호</th>
+        <th>사용자</th>
+        <th>출발일자</th>
+        <th>출발시간</th>
+        <th>출발 Km</th>
+        <th>도착일자</th>
+        <th>도착시간</th>
+        <th>도착 Km</th>
+        <th>장소</th>
+        <th>소요비용</th>
+      </tr>
+      <tr th:each="DTO,i : ${CAR_LIST}">
+        <td th:text="${i.count}">NO</td>
+        <td th:text="${DTO.c_qty}">구분</td>
+        <td th:text="${DTO.c_carnum}">차량번호</td>
+        <td th:text="${DTO.c_username}">사용자</td>
+        <td th:text="${DTO.c_sdate}">출발일자</td>
+        <td th:text="${DTO.c_stime}">출발시간</td>
+        <td th:text="${DTO.c_skm}">출발 Km</td>
+        <td th:text="${DTO.c_edate}">도착일자</td>
+        <td th:text="${DTO.c_etime}">도착시간</td>
+        <td th:text="${DTO.c_ekm}">도착 Km</td>
+        <td th:text="${DTO.c_goal}">장소</td>
+        <td th:text="${DTO.c_cost}">소요비용</td>
+      </tr>
+    </table>
+  </th:block>
+</html>
