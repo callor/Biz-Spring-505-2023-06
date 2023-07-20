@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
       //   } else if (targetClassName === "login") {
       //     alert("Nav 클릭한 login");
       //   }
-
       document.location.href = URL;
     }
   };
