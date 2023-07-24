@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html
   lang="ko"
+  xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
   <head>
@@ -31,7 +32,7 @@
     </script>
     <script th:src="@{/static/js/main_input_validation.js}"></script>
     <script th:src="@{/static/js/main_input.js}"></script>
-    !
+    
     <script th:src="@{/static/js/main_nav.js}"></script>
   </head>
   <body th:with="LOGIN = ${session.LOGINUSER}">
