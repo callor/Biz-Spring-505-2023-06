@@ -1,5 +1,8 @@
 package com.callor.rent.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.callor.rent.models.RentBookDto;
 import com.callor.rent.models.RentBookVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -60,7 +64,17 @@ public class RentController {
 	
 	@ModelAttribute("RENT_WORK")
 	public RentBookVO newRentBook() {
-		return new RentBookVO();
+		
+		LocalDateTime localDateTime = LocalDateTime.now();
+		LocalDateTime returnDate = localDateTime.plusDays(10);
+		
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		// DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
+		
+		return RentBookVO.builder()
+				.rent_date(localDateTime.format(dateFormat))
+				.rent_return_date(returnDate.format(dateFormat)).build();
+	
 	}
 	
 
