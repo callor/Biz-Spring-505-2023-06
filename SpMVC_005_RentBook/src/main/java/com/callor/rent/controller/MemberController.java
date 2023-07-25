@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -56,6 +57,44 @@ public class MemberController {
 		}
 		return "redirect:/member";
 		
+	}
+	
+	@RequestMapping(value="/{b_code}/detail",method=RequestMethod.GET)
+	public String detail(@PathVariable("b_code") String bcode,Model model ) {
+		MemberDto memberDto = memberService.findById(bcode);
+		model.addAttribute("MEMBER",memberDto);
+		return "member/detail";
+	}
+	
+	@RequestMapping(value="/{b_code}/update",method=RequestMethod.GET)
+	public String update(@PathVariable("b_code") String bcode,Model model ) {
+		MemberDto memberDto = memberService.findById(bcode);
+		model.addAttribute("MEMBER",memberDto);
+		return "member/input";
+	}
+	
+	@RequestMapping(value="/{b_code}/update",method=RequestMethod.POST)
+	public String update(
+			@PathVariable("b_code") String bcode, 
+			@ModelAttribute("MEMBER") MemberDto memberDto, Model model) {
+		
+		memberDto.setM_code(bcode);
+		try {
+			int result = memberService.update(memberDto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			// console에 Exception log 출력하기
+			e.printStackTrace();
+			
+			String message = e.getMessage();
+			model.addAttribute("MESSAGE",message);
+			return "member/input";
+			
+		}
+		// @PathVariable 로 받은 b_code 데이터를
+		// redirect 코드에 그대로 적용하기
+		// String.format("redirect:/member/%s/detail", bcode)
+		return "redirect:/member/{b_code}/detail";
 	}
 
 	

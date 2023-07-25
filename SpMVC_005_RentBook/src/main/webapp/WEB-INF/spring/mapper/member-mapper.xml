@@ -10,6 +10,13 @@
  		VALUES(#{m_code}, #{m_name}, #{m_tel}, #{m_addr})
  	</insert>
 
+	<update id="update">
+		UPDATE tbl_members 
+			SET m_name = #{m_name},
+				m_tel = #{m_tel},
+				m_addr = #{m_addr}
+			WHERE m_code = #{m_code} 	
+	</update>
 
  
  	<select id="create_member_table">

@@ -20,7 +20,9 @@
 		<c:forEach items="${MEMBERS}" var="MEMBER">
 			<tr>
 				<td>${MEMBER.m_code}</td>
-				<td>${MEMBER.m_name}</td>
+				<td>
+				<a href="${rootPath}/member/${MEMBER.m_code}/detail">${MEMBER.m_name}</a>
+				</td>
 				<td>${MEMBER.m_tel}</td>
 				<td>${MEMBER.m_addr}</td>
 			</tr>
