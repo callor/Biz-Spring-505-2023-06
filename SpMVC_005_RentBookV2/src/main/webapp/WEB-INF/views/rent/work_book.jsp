@@ -9,7 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${rootPath}/static/css/input.css">
+<link href="${rootPath}/static/css/input.css" 
+			rel="stylesheet">
 </head>
 <body>
 	<%
@@ -27,7 +28,7 @@
 			<label>도서명</label>
 			<div class="search container">
 				<form:input path="b_name" />
-				<div class="search list"></div>
+				<div class="search list">Search List</div>
 			</div>
 		</div>
 		<div><label>도서코드</label><form:input path="rent_bcode" /></div>
