@@ -93,8 +93,12 @@ public class BookController {
 		return num + "";
 	}
 
-	@RequestMapping(value="/name/search",method=RequestMethod.GET)
-	public String bNameSearch(
+	@ResponseBody
+	@RequestMapping(
+			value="/name/search",
+			method=RequestMethod.GET,
+			produces = "application/json;charset=UTF-8")
+	public List<BookDto> bNameSearch(
 		@RequestParam(name = "b_name",required = false,defaultValue = "-1") 
 		String bname) {
 
@@ -103,7 +107,7 @@ public class BookController {
 		}
 		log.debug("받은 도서 명 {} ",bname);
 		List<BookDto> bookList = bookService.findByBName(bname);
-		return null;
+		return bookList;
 	}
 	
 	

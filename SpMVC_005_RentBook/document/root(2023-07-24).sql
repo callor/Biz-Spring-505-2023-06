@@ -29,6 +29,29 @@ CREATE TABLE tbl_members (
 	M_ADDR	VARCHAR(125)		
 );
 
+CREATE TABLE tbl_rent_book (
+	RENT_SEQ	BIGINT	NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	RENT_DATE	VARCHAR(10)	NOT NULL,	
+	RENT_RETURN_DATE	VARCHAR(10)	NOT NULL,	
+	RENT_BCODE	VARCHAR(13)	NOT NULL,	
+	RENT_MCODE	VARCHAR(6)	NOT NULL,	
+	RENT_RETURN_YN	VARCHAR(1),		
+	RENT_POINT	INT,		
+	RENT_PRICE	INT		
+);
+SELECT COUNT(*) FROM tbl_books;
+SELECT * FROM tbl_books LIMIT 10;
+
+SELECT COUNT(*) FROM tbl_members;
+
+SELECT * FROM tbl_rent_book R
+LEFT JOIN tbl_members M
+	ON R.rent_mcode = M.m_code
+LEFT JOIN tbl_books B
+	ON B.rent_bcode = B.b_code;
+
+
+
 
 
 

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.callor.rent.models.MemberDto;
 import com.callor.rent.service.MemberService;
@@ -95,6 +97,21 @@ public class MemberController {
 		// redirect 코드에 그대로 적용하기
 		// String.format("redirect:/member/%s/detail", bcode)
 		return "redirect:/member/{b_code}/detail";
+	}
+
+	
+	@ResponseBody
+	@RequestMapping(
+			value="/name/search",
+			method=RequestMethod.GET,
+			produces = "application/json;charset=UTF-8")
+	public List<MemberDto> name_search(
+			@RequestParam("m_name")  String mName
+			) {
+		
+		List<MemberDto> memberList = memberService.findByMName(mName);
+		return memberList;
+		
 	}
 
 	

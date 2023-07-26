@@ -27,6 +27,25 @@
 			
 			<th>포인트</th>
 		</tr>
+		<c:forEach items="${RBOOKS}" var="RB">
+			<tr>
+				<td>${RB.rent_bcode}</td>
+				<td>${RB.b_name}</td>
+				<td>${RB.b_comp}</td>
+				
+				<td>${RB.rent_mcode}</td>
+				<td>${RB.m_name}</td>
+				<td>${RB.m_tel}</td>
+				
+				<td>${RB.rent_date}</td>
+				<td>${RB.rent_return_date}</td>
+				<td>${RB.rent_return_yn == 'Y' ? '반납' : '미반납' }</td>
+				<td>${RB.rent_price}</td>
+				<td>${RB.rent_point}</td>
+			</tr>
+		</c:forEach>
+		
+		
 	</table>
 	<div>
 		<a href="${rootPath}/rent/insert">도서대여</a>

@@ -9,6 +9,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${rootPath}/static/css/input.css" rel="stylesheet">
+<script type="text/javascript">
+	var rootPath = "${rootPath}"
+</script>			
+
+<script src="${rootPath}/static/js/main.js"></script>
+<script src="${rootPath}/static/js/member.js"></script>
+
 </head>
 <body>
 	<h1>회원검색</h1>
@@ -37,7 +45,12 @@
 		코드를 생략 할수 있다
 		*/
 		%>
-		<div><label>회원명</label><form:input path="m_name" /></div>
+		<div><label>회원명</label>
+			<div class="search container">
+				<form:input path="m_name" />
+				<div class="search list"></div>
+			</div>
+		</div>
 		<div><label>회원코드</label><form:input path="rent_mcode" /></div>
 		<div><label>전화번호</label><form:input path="m_tel" /></div>
 		<div><button>다음 >> </button></div>

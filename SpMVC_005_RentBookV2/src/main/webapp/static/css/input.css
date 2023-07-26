@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 form {
   width: 60%;
   margin: 1rem auto;
@@ -8,15 +14,20 @@ form {
   display: flex;
   flex-direction: column;
 }
-
-form div {
+/*
+form tag 의 child div 에 속성 지정하기
+form div : form 자식, 손자, 증손자, 고손자 할것 없이 모든 div
+form &gt; div : 순수하게 form 자식 div 에 적용
+*/
+form > div {
   display: flex;
   margin: 5px;
-  border: 1px solid #ddd;
 }
 
 form label {
   flex: 1;
+  text-align: right;
+  margin-right: 3px;
 }
 
 form input {
@@ -25,6 +36,7 @@ form input {
 
 div.search.container {
   flex: 3;
+  display: flex;
   position: relative;
 }
 
@@ -37,4 +49,33 @@ div.search.list {
   overflow: auto;
   border: 1px solid blue;
   display: none;
+  background-color: white;
+}
+
+/* 새로 생성되는 div */
+div.search.list div {
+  padding: 0.3rem;
+  cursor: pointer;
+
+  /* text ellipsis : 말줄임표 만들기 */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+div.search.list div:nth-of-type(odd) {
+  background-color: #f2f2f2;
+}
+
+div.search.list div:nth-of-type(even) {
+  background-attachment: white;
+}
+
+div.search.list div:hover {
+  background-color: #ddd;
+}
+
+span.search-item {
+  font-weight: bold;
+  color: blue;
 }

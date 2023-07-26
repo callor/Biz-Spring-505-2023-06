@@ -5,7 +5,51 @@
   
  <mapper namespace="com.callor.rent.dao.RentBookDao">
  
- 	<insert id="insert" parameterType="RentBookDto">
+ 	<select id="selectAll" resultType="RentBookVO">
+	 	SELECT * FROM tbl_rent_book R
+			LEFT JOIN tbl_members M
+				ON R.rent_mcode = M.m_code
+			LEFT JOIN tbl_books B
+				ON R.rent_bcode = B.b_code
+ 	</select>
+
+ 	<select id="findById" resultType="RentBookVO">
+	 	SELECT * FROM tbl_rent_book R
+			LEFT JOIN tbl_members M
+				ON R.rent_mcode = M.m_code
+			LEFT JOIN tbl_books B
+				ON R.rent_bcode = B.b_code
+		WHERE R.rent_seq = #{id}
+ 	</select>
+
+ 	<select id="fineByBCode" resultType="RentBookVO">
+	 	SELECT * FROM tbl_rent_book R
+			LEFT JOIN tbl_members M
+				ON R.rent_mcode = M.m_code
+			LEFT JOIN tbl_books B
+				ON R.rent_bcode = B.b_code
+		WHERE R.rent_bcode = #{code}
+ 	</select>
+ 	
+ 	<select id="fineByMCode" resultType="RentBookVO">
+	 	SELECT * FROM tbl_rent_book R
+			LEFT JOIN tbl_members M
+				ON R.rent_mcode = M.m_code
+			LEFT JOIN tbl_books B
+				ON R.rent_bcode = B.b_code
+		WHERE R.rent_mcode = #{code}
+ 	</select>
+ 
+ 	<insert id="insert" parameterType="RentBookVO">
+ 		INSERT INTO tbl_rent_book(
+			RENT_DATE,	RENT_RETURN_DATE,	
+			RENT_BCODE, RENT_MCODE,	
+			RENT_RETURN_YN, RENT_PRICE		
+ 		) VALUES (
+			#{rent_date}, #{rent_return_date},	
+			#{rent_bcode}, #{rent_mcode},	
+			'N',		 #{rent_price}		
+ 		)
  	</insert>
  	
  	<update id="update">

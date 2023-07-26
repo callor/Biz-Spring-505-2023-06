@@ -16,12 +16,12 @@ public interface MemberDao {
 	public MemberDto findById(String id);
 	
 	@Select("SELECT * FROM tbl_members "
-			+ " WHERE m_name LIKE CONCAT('%',#{name},'%' "
+			+ " WHERE m_name LIKE CONCAT('%',#{name},'%' )"
 			+ " ORDER BY m_name ")
 	public List<MemberDto > findByName(String name);
 
 	@Select("SELECT * FROM tbl_members "
-			+ " WHERE m_tel LIKE CONCAT('%',#{tel},'%' "
+			+ " WHERE m_tel LIKE CONCAT('%',#{tel},'%' )"
 			+ " ORDER BY m_tel ")
 	public List<MemberDto> findByTel(String tel);
 	

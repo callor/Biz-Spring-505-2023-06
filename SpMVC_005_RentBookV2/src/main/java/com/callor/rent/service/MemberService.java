@@ -11,5 +11,6 @@ public interface MemberService {
 	public List<MemberDto> selectAll();
 	public MemberDto findById(String bcode);
 	public int update(MemberDto memberDto) throws Exception;
+	public List<MemberDto> findByMName(String mName);
 
 }

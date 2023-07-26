@@ -96,5 +96,11 @@ public class MemberServiceImplV1 implements MemberService{
 	public void create_table() {
 		memberDao.create_member_table(null);
 	}
+
+	@Override
+	public List<MemberDto> findByMName(String mName) {
+		// TODO Auto-generated method stub
+		return memberDao.findByName(mName);
+	}
 	
 }

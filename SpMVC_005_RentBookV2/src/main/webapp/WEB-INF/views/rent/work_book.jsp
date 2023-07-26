@@ -16,7 +16,9 @@
 	var rootPath = "${rootPath}"
 </script>			
 
-<script src="${rootPath}/static/js/book.js"></script>			
+<script src="${rootPath}/static/js/main.js"></script>		
+<script src="${rootPath}/static/js/book.js"></script>
+			
 </head>
 <body>
 	<%
@@ -37,8 +39,10 @@
 				<div class="search list">Search List</div>
 			</div>
 		</div>
-		<div><label>도서코드</label><form:input path="rent_bcode" /></div>
-		<div><label>도서출판사</label><form:input path="b_comp" /></div>
+		<div><label>도서코드</label>
+			<form:input path="rent_bcode" /></div>
+		<div><label>출판사</label>
+			<form:input path="b_comp" /></div>
 		<div><button>다음 >> </button></div>
 	</form:form>
 </body>

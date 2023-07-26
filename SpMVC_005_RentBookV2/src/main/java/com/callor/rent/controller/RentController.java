@@ -2,6 +2,7 @@ package com.callor.rent.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.callor.rent.models.RentBookVO;
+import com.callor.rent.service.RentBookService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,12 +48,19 @@ import lombok.extern.slf4j.Slf4j;
 @SessionAttributes("RENT_WORK")
 public class RentController {
 	
+	protected final RentBookService rentService;
+	public RentController(RentBookService rentService) {
+		this.rentService = rentService;
+	}
+
 	/*
 	 * GET /context/rent/
 	 * GET /context/rent
 	 */
 	@RequestMapping(value={"/",""},method=RequestMethod.GET)
-	public String home() {
+	public String home(Model model) {
+		List<RentBookVO> rBooks = rentService.selectAll();
+		model.addAttribute("RBOOKS",rBooks);
 		return "rent/home";
 	}
 	
@@ -88,6 +97,9 @@ public class RentController {
 			SessionStatus session) {
 		
 		log.debug("전달된 데이터 {}",rentBookVO);
+		
+		int result = rentService.insert(rentBookVO);
+
 	
 		/*
 		 * SessionAttributes 에 보관중인 객체(데이터)를 모두 사용한 후에는
