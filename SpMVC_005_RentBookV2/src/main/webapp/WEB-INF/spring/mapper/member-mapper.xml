@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.rent.dao.MemberDao">
+ 
+ 	<insert id="insert">
+ 		INSERT INTO tbl_members(m_code, m_name, m_tel, m_addr)
+ 		VALUES(#{m_code}, #{m_name}, #{m_tel}, #{m_addr})
+ 	</insert>
+
+	<update id="update">
+		UPDATE tbl_members 
+			SET m_name = #{m_name},
+				m_tel = #{m_tel},
+				m_addr = #{m_addr}
+			WHERE m_code = #{m_code} 	
+	</update>
+
+ 
+ 	<select id="create_member_table">
+		CREATE TABLE IF NOT EXISTS tbl_members (
+			M_CODE	VARCHAR(6)	NOT NULL	PRIMARY KEY,
+			M_NAME	VARCHAR(125)	NOT NULL,	
+			M_TEL	VARCHAR(15)	NOT NULL,	
+			M_ADDR	VARCHAR(125)		
+		)
+ 	</select>
+ </mapper> 
