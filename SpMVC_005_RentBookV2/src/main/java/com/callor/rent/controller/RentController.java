@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.callor.rent.models.RentBookVO;
 
@@ -25,6 +26,21 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping(value="/rent")
 
+/*
+ * Spring 에서 사용할수 있는 Session 은 2가지 종류가 있다
+ * HttpSession : Servlet 차원에서 Http Protocol 상에 구현하는 Session
+ * 		로그인과 관련된 Session 은 이 클래스를 사용한다
+ * SessionAttributes : Spring Framework 차원에서 구현하는 Session
+ * 		일반적인 객체등을 Session 에 저장하여
+ * 		다양한 기능을 구현하는 목적
+ * 
+ * Session Server 의 메모리 영역을 일정부분 차지한다
+ * 접속자가 많아지면 접속자 만큼 메모리 소모가 일어난다
+ * 때문에 Session 는 꼭 필요한 요소에서만 제한적으로 사용하는 것이 좋다
+ * Session 을 남발하면, 메모리 누수(leak)와 보안에 치명적인 문제를
+ * 		야기할수 있다
+ * 
+ */
 // 지금부터 별도 지시가 있을때까지 RENT_WORK 객체는 지우지 마라
 // 서버의 Session 영역에 영구 보관하라
 @SessionAttributes("RENT_WORK")
@@ -46,19 +62,39 @@ public class RentController {
 	}
 	
 	@RequestMapping(value="/go/member",method=RequestMethod.POST)
-	public String work_member(@ModelAttribute("RENT_WORK") RentBookVO rentBookVO,Model model) {
-		model.addAttribute("RENT_WORK",rentBookVO);
+	public String work_member(
+			@ModelAttribute("RENT_WORK") RentBookVO rentBookVO,Model model) {
+		/*
+		 * @ModelAttribute 를 사용하지 않을때는 데이터객체를 Model 객체에 담아서
+		 * view 로 전달을 해야한다.
+		 * 하지만 @ModelAttribute 를 사용하면 자동으로 Model 객체에
+		 * 필요한 Attribute 를 자동으로 담아준다
+		 */
+		//	model.addAttribute("RENT_WORK",rentBookVO);
 		return "rent/work_member";
 	}
 
 	@RequestMapping(value="/go/complete",method=RequestMethod.POST)
-	public String work_complete(@ModelAttribute("RENT_WORK") RentBookVO rentBookVO) {
+	public String work_complete(
+			@ModelAttribute("RENT_WORK") RentBookVO rentBookVO) {
 		return "rent/work_complete";
 	}
 
 	@RequestMapping(value="/insert",method=RequestMethod.POST)
-	public String work_insert(@ModelAttribute("RENT_WORK") RentBookVO rentBookVO) {
+	public String work_insert(
+			@ModelAttribute("RENT_WORK") 
+			RentBookVO rentBookVO,
+			
+			SessionStatus session) {
+		
 		log.debug("전달된 데이터 {}",rentBookVO);
+	
+		/*
+		 * SessionAttributes 에 보관중인 객체(데이터)를 모두 사용한 후에는
+		 * 반드시 데이터를 Clear 시키는 절차가 필요하다
+		 * 이때 SessionStatus.setComplete() method 를 호출해 주면된다
+		 */
+		session.setComplete();
 		return "redirect:/rent";
 	}
 	

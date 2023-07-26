@@ -17,7 +17,26 @@
 			도서명:${RENT_WORK.b_name}, 
 			출판사:${RENT_WORK.b_comp}</p>
 	</div>
-	<form:form action="${rootPath}/rent/member" modelAttribute="RENT_WORK">
+	<form:form action="${rootPath}/rent/go/complete" modelAttribute="RENT_WORK">
+		<%
+		/*
+		첫 화면에서 입력된 도서정보를 
+		이 화면에서 입력하는 회원정보와 함께 묶어서 다음 화면으로
+		전달 하기 위해서는 감춰진 또는 다른 위치에 있는
+		input tag 를 생성하고 그 input tag 에 데이터를 담아 놓아야 한다
+		<div>
+			<input hidden="hidden" name="rent_bcode" 
+					value="${RENT_WORK.rent_bcode]"/>
+			<input hidden="hidden" name="b_name" 
+					value="${RENT_WORK.b_name"/>
+			<input hidden="hidden" name="b_comp"
+					value="${RENT_WORK.b_comp"/>
+		</div>
+		하지만 Spring 에서는 SessionAttributes(), ModelAttibute()
+		그리고 Spring form tag 를 사용하므로써 데이터를 일일이 챙기는
+		코드를 생략 할수 있다
+		*/
+		%>
 		<div><label>회원명</label><form:input path="m_name" /></div>
 		<div><label>회원코드</label><form:input path="rent_mcode" /></div>
 		<div><label>전화번호</label><form:input path="m_tel" /></div>

@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${rootPath}/static/css/input.css">
 </head>
 <body>
 	<%
@@ -22,7 +23,13 @@
 	<h1>도서검색</h1>
 	<form:form action="${rootPath}/rent/go/member" 
 				modelAttribute="RENT_WORK">
-		<div><label>도서명</label><form:input path="b_name" /></div>
+		<div>
+			<label>도서명</label>
+			<div class="search container">
+				<form:input path="b_name" />
+				<div class="search list"></div>
+			</div>
+		</div>
 		<div><label>도서코드</label><form:input path="rent_bcode" /></div>
 		<div><label>도서출판사</label><form:input path="b_comp" /></div>
 		<div><button>다음 >> </button></div>

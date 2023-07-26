@@ -25,6 +25,7 @@
 	
 	<form:form action="${rootPath}/rent/insert" modelAttribute="RENT_WORK">
 		<div><label>대여일자: </label><form:input path="rent_date" /></div>
+		<div><label>반납예정일자: </label><form:input path="rent_return_date" /></div>
 		<div><label>대여금액: </label><form:input path="rent_price" /></div>
 		<div><button>대여실행</button></div>
 	</form:form>
