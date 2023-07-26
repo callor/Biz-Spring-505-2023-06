@@ -48,6 +48,12 @@ public class BookServiceImplV1 implements BookService{
 		// TODO Auto-generated method stub
 		return bookDao.update(bookDto);
 	}
+
+	@Override
+	public List<BookDto> findByBName(String bname) {
+		// TODO Auto-generated method stub
+		return bookDao.findByBName(bname.trim());
+	}
 	
 
 }

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.callor.rent.models.BookDto;
 import com.callor.rent.service.BookService;
@@ -76,6 +78,35 @@ public class BookController {
 	
 	}
 
+	/*
+	 * 만약 Req 를 하면서 num 변수에 값을 포함하여 보낼때
+	 * 문자열, "", 아무것도 없는 값을 전달하면 
+	 * 서버는 400 오류가 난다
+	 * 400 오류를 방지하려면 num=0 이라도 최소한 전달해야 한다
+	 */
+	// param?num=000
+	@ResponseBody
+	@RequestMapping(value="/param",method=RequestMethod.GET)
+	public String paramTest(
+		@RequestParam(name="num",required = false,defaultValue = "0")
+		int num) {
+		return num + "";
+	}
+
+	@RequestMapping(value="/name/search",method=RequestMethod.GET)
+	public String bNameSearch(
+		@RequestParam(name = "b_name",required = false,defaultValue = "-1") 
+		String bname) {
+
+		if(bname.equals("-1")) {
+			return null;
+		}
+		log.debug("받은 도서 명 {} ",bname);
+		List<BookDto> bookList = bookService.findByBName(bname);
+		return null;
+	}
+	
+	
 	
 	
 	/*

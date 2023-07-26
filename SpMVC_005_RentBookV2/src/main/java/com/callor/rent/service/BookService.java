@@ -10,5 +10,6 @@ public interface BookService {
 	public int insert(BookDto bookDto);
 	public BookDto findById(String bcode);
 	public int update(BookDto bookDto);
+	public List<BookDto> findByBName(String bname);
 
 }

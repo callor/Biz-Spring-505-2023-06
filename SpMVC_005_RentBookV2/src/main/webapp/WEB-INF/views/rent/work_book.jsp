@@ -11,6 +11,12 @@
 <title>Insert title here</title>
 <link href="${rootPath}/static/css/input.css" 
 			rel="stylesheet">
+			
+<script type="text/javascript">
+	var rootPath = "${rootPath}"
+</script>			
+
+<script src="${rootPath}/static/js/book.js"></script>			
 </head>
 <body>
 	<%
