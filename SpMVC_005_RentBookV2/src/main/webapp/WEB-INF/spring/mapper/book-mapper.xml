@@ -5,6 +5,24 @@
   
  <mapper namespace="com.callor.rent.dao.BookDao">
  
+ 	<select id="selectSearchCount">
+ 		SELECT COUNT(*) FROM tbl_books
+ 		WHERE 
+		<foreach collection="list" item="S" separator=" OR ">
+			b_name LIKE CONCAT('%', #{S}, '%')
+		</foreach> 		
+ 	</select>
+ 	<select id="selectSearchPage">
+ 		SELECT * FROM tbl_books
+ 		WHERE 
+		<foreach collection="list" item="S" separator=" OR ">
+			b_name LIKE CONCAT('%', #{S}, '%')
+		</foreach>
+		LIMIT #{limit} OFFSET #{offset} 		
+ 	</select>
+ 
+ 
+ 
  	<insert id="insert" parameterType="BookDto">
 	 	INSERT INTO tbl_books(
 			B_CODE,B_NAME,B_AUTHER,B_COMP,B_YEAR,B_IPRICE,B_RPRICE

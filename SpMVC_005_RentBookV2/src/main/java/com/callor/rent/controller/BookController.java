@@ -33,13 +33,22 @@ public class BookController {
 	@RequestMapping(value= {"/",""} ,method=RequestMethod.GET)
 	public String home(
 			@RequestParam(name="page", required = false, defaultValue = "1")
-			String page,  Model model) {
+			String page,  
+			@RequestParam(name="search", required = false, defaultValue = "-1")
+			String search,  
+			
+			Model model) {
 		
 		// List<BookDto> books = bookService.selectAll();
 		// List<BookDto> books = bookService.selectPage(page);
-		bookService.selectPage(page, model);
+		if(search.equals("-1")) {
+			bookService.selectPage(page, model);
+		} else {
+			bookService.selectPage(page, model,search);
+		}
+
+		model.addAllAttributes("SEARCH",search);
 		
-		// model.addAttribute("BOOKS",books);
 		return "book/home";
 	}
 	

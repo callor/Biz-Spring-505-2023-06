@@ -11,6 +11,7 @@ public interface BookService {
 	public List<BookDto> selectAll();
 	public List<BookDto> selectPage(String page);
 	public void selectPage(String page, Model model);
+	public void selectPage(String page, Model model, String search);
 	
 	
 	public int insert(BookDto bookDto);
