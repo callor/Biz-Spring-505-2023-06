@@ -1,20 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>rent</artifactId>
 	<name>SpMVC_005_RentBook</name>
 	<packaging>war</packaging>
 	<version>2.0.0-BUILD-SNAPSHOT</version>
-	
+
 	<parent>
 		<groupId>com.callor</groupId>
 		<artifactId>master</artifactId>
 		<version>1.0.0</version>
 	</parent>
+
+	<properties>
+		<tiles-version>3.0.8</tiles-version>
+	</properties>
+
 	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-core -->
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>${tiles-version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-extras -->
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-extras</artifactId>
+			<version>${tiles-version}</version>
+		</dependency>
 		
-	
 	</dependencies>
-	
+
 </project>
