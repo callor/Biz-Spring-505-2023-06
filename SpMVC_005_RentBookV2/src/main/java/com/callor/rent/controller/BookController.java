@@ -47,8 +47,7 @@ public class BookController {
 			bookService.selectPage(page, model,search);
 		}
 
-		model.addAllAttributes("SEARCH",search);
-		
+		model.addAttribute("SEARCH",search);
 		return "book/home";
 	}
 	

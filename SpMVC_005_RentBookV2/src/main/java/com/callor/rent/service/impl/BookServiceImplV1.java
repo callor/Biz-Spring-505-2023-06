@@ -105,6 +105,7 @@ public class BookServiceImplV1 implements BookService{
 	@Override
 	public void selectPage(String page, Model model, String search) {
 		
+		// 검색어를 빈칸을 기준으로 분해하기
 		String[] searchs = search.split(" ");
 		
 		// 배열을 List 만들기
