@@ -3,22 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form"  
 		prefix="form"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>		
 <c:set value="${pageContext.request.contextPath}"  var="rootPath" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${rootPath}/static/css/input.css" 
-			rel="stylesheet">
-			
-<script type="text/javascript">
-	var rootPath = "${rootPath}"
-</script>			
-
-<script src="${rootPath}/static/js/main.js"></script>		
-<script src="${rootPath}/static/js/book.js"></script>
-			
 </head>
 <body>
 	<%

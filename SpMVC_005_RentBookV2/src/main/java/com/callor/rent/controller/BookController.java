@@ -31,9 +31,15 @@ public class BookController {
 	}
 
 	@RequestMapping(value= {"/",""} ,method=RequestMethod.GET)
-	public String home(Model model) {
-		List<BookDto> books = bookService.selectAll();
-		model.addAttribute("BOOKS",books);
+	public String home(
+			@RequestParam(name="page", required = false, defaultValue = "1")
+			String page,  Model model) {
+		
+		// List<BookDto> books = bookService.selectAll();
+		// List<BookDto> books = bookService.selectPage(page);
+		bookService.selectPage(page, model);
+		
+		// model.addAttribute("BOOKS",books);
 		return "book/home";
 	}
 	

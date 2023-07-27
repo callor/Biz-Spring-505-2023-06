@@ -45,7 +45,16 @@
 			</c:otherwise>		
 		</c:choose>
 	</table>
-	<div class="book button">
+	<div class="list pagination">
+		<ul>
+			<c:forEach begin="1" end="10" var="PAGE">
+				<li><a href="${rootPath}/book?page=${PAGE}">${PAGE}</a></li>
+			</c:forEach>
+			<li>&gt;</li>
+			<li>${PAGI.finalPageNum}</li>
+		</ul>
+	</div>
+	<div class="list book button">
 		<a href="${rootPath}/">처음으로</a>
 		<a href="${rootPath}/book/insert">도서정보 추가</a>
 	</div>

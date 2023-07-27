@@ -65,6 +65,8 @@ nav li.login {
 
 section.main {
   flex: 1;
+  /* 화면크기보다 내의 컨턴츠가 크면 Scroll Bar를 만들어어 보여라 */
+  overflow: auto;
 }
 
 footer {
