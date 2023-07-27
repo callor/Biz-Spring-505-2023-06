@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+  
+<tiles-definitions>
+	<!-- return "book/home" : views/book/home.jsp -->
+	<definition name="book/*" extends="default">
+		<put-attribute name="main-content" value="/WEB-INF/views/book/{1}.jsp"/>
+	</definition>
+	
+	<!-- return "book/go/member" : views/book/go/member.jsp -->
+	<definition name="book/*/*" extends="default">
+		<put-attribute name="main-content" value="/WEB-INF/views/book/{1}/{2}.jsp"/>
+	</definition>
+
+	<definition name="member/*" extends="default">
+		<put-attribute name="main-content" value="/WEB-INF/views/member/{1}.jsp"/>
+	</definition>
+</tiles-definitions>
