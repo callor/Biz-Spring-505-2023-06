@@ -34,3 +34,8 @@ div.pagination li {
   border: 1px solid rgb(111, 111, 221);
   border-radius: 3px;
 }
+
+div.pagination li.active {
+  background-color: blue;
+  color: white;
+}

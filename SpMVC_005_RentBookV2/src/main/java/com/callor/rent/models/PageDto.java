@@ -64,12 +64,16 @@ public class PageDto {
 		return firstPageNum;
 	}
 	public int getLastPageNum() {
-		 this.firstPageNum = this.getFirstPageNum();
-		 this.finalPageNum =  this.getFinalPageNum();
-		 this.lastPageNum = this.firstPageNum + this.limitCount;
-		 this.lastPageNum = this.lastPageNum > this.finalPageNum ? 
+		 
+		this.firstPageNum = this.getFirstPageNum();
+		this.finalPageNum =  this.getFinalPageNum();
+		 
+		this.lastPageNum = this.firstPageNum + this.limitCount - 1;
+		
+		this.lastPageNum = this.lastPageNum > this.finalPageNum ? 
 			 		this.finalPageNum : this.lastPageNum;
-		 return this.lastPageNum;
+		
+		return this.lastPageNum;
 		
 	}
 	

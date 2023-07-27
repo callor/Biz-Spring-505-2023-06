@@ -54,7 +54,9 @@
 					begin="${PAGINATION.firstPageNum}" 
 					end="${PAGINATION.lastPageNum}" 
 					var="PAGE">
-				<li><a href="${rootPath}/book?page=${PAGE}">${PAGE}</a></li>
+				<li class="${PAGINATION.pageNum == PAGE ? 'active' : '' }">
+					<a href="${rootPath}/book?page=${PAGE}">${PAGE}</a>
+				</li>
 			</c:forEach>
 			<li> &gt; </li>
 			<li>
