@@ -7,15 +7,20 @@ import lombok.Getter;
 @Builder
 public class PageDto {
 
+	// Builder 패턴으로 객체를 생성할때 기본 변수값 설정하기
+	@Builder.Default
 	private int pageNum = 1; // 보고자 하는 페이지 번호
 	
 	private int totalCount; 	// 데이터의 전체 개수
-	private int offsetNum = 0;  // 시작페이지 번호(기본값은 0 부터) 
-	private int limitCount = 10; // 보여질 데이터 개수(기본값은 10개)
+	private int offsetNum;  // 시작페이지 번호(기본값은 0 부터)
 	
+	@Builder.Default
+	private int limitCount = 10; // 보여질 데이터 개수(기본값은 10개)
 	private int pageNumCount; // 하단 pagination 에 보여질 번호개수
 	
 	private int firstPageNum;  // 전체데이터의 첫번째 페이지 번호
+	private int lastPageNum;
+
 	
 	/*
 	 * totalCount 가 153 이라고 하자
@@ -45,10 +50,28 @@ public class PageDto {
 	}
 	
 	public int getOffSetNum() {
-		this.offsetNum = (pageNum - 1) + limitCount;
+		this.offsetNum = (pageNum - 1) * limitCount;
 		return this.offsetNum;
 	}
-	
+
+	/*
+	 * 14 page 선택했을때
+	 * listPage : 11 12 13 14 15 16 17 18 19 20
+	 */
+	public int getFirstPageNum() {
+		this.firstPageNum = (int)(pageNum - (limitCount / 2));
+		this.firstPageNum = this.firstPageNum < 1 ? 1 : this.firstPageNum;
+		return firstPageNum;
+	}
+	public int getLastPageNum() {
+		 this.firstPageNum = this.getFirstPageNum();
+		 this.finalPageNum =  this.getFinalPageNum();
+		 this.lastPageNum = this.firstPageNum + this.limitCount;
+		 this.lastPageNum = this.lastPageNum > this.finalPageNum ? 
+			 		this.finalPageNum : this.lastPageNum;
+		 return this.lastPageNum;
+		
+	}
 	
 	
 }

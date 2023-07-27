@@ -45,13 +45,23 @@
 			</c:otherwise>		
 		</c:choose>
 	</table>
+	<p>${PAGINATION.firstPageNum}, ${PAGINATION.lastPageNum} </p> 
+	
 	<div class="list pagination">
 		<ul>
-			<c:forEach begin="1" end="10" var="PAGE">
+			<li> &lt; </li>
+			<c:forEach 
+					begin="${PAGINATION.firstPageNum}" 
+					end="${PAGINATION.lastPageNum}" 
+					var="PAGE">
 				<li><a href="${rootPath}/book?page=${PAGE}">${PAGE}</a></li>
 			</c:forEach>
-			<li>&gt;</li>
-			<li>${PAGI.finalPageNum}</li>
+			<li> &gt; </li>
+			<li>
+				<a href="${rootPath}/book?page=${PAGINATION.finalPageNum}">
+					${PAGINATION.finalPageNum}
+				</a>
+			</li>
 		</ul>
 	</div>
 	<div class="list book button">

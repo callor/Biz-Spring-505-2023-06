@@ -12,6 +12,9 @@ import com.callor.rent.models.BookDto;
 import com.callor.rent.models.PageDto;
 import com.callor.rent.service.BookService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service(QualifierConfig.SERVICE.BOOK_V1)
 public class BookServiceImplV1 implements BookService{
 	
@@ -83,17 +86,20 @@ public class BookServiceImplV1 implements BookService{
 		
 		int totalCount = bookDao.selectCount();
 		int intPageNum = Integer.valueOf(page);
+		
 		PageDto pageDto = PageDto.builder()
 				.pageNum(intPageNum)
 				.totalCount(totalCount)
 				.build();
 		
-		int offSetCount = (intPageNum - 1) * pageDto.getLimitCount(); 
+		log.debug("Page {}", pageDto);
+ 
 		List<BookDto> books = bookDao.selectPage(
-				pageDto.getLimitCount(), offSetCount);
+				pageDto.getLimitCount(), 
+				pageDto.getOffSetNum());
 		
 		model.addAttribute("BOOKS",books);
-		model.addAttribute("PAGI",pageDto);
+		model.addAttribute("PAGINATION",pageDto);
 		
 	}
 	
