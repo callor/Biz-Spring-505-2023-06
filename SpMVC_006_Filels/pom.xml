@@ -37,58 +37,6 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-			<version>${org.spring-security-version}</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>${org.spring-security-version}</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>${org.spring-security-version}</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-taglibs</artifactId>
-			<version>${org.spring-security-version}</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.jasypt/jasypt -->
-		<dependency>
-			<groupId>org.jasypt</groupId>
-			<artifactId>jasypt</artifactId>
-			<version>${org.jasypt-version}</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.jasypt/jasypt-spring31 -->
-		<dependency>
-			<groupId>org.jasypt</groupId>
-			<artifactId>jasypt-spring31</artifactId>
-			<version>${org.jasypt-version}</version>
-		</dependency>
-
-
-
 		<!-- db 연동을 위한 Dependency 설정 -->
 		<!-- spring-jdbc -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
@@ -148,32 +96,6 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<version>8.0.33</version>
 		</dependency>
-
-
-		<!-- json 구조의 데이터를 파싱하여 vo에 담기위한 중간 도구 -->
-		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
-		<dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-
-		<!-- Controller에서 ResponseBody를 사용하여 객체등을 웹으로 JSON 형태로 만들어 보내는 중간 도구 -->
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.11.2</version>
-		</dependency>
-
-		<!-- RestTemplate을 사용하여 XML 결과를 받기위한 보조 도구 -->
-		<!-- https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime -->
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
-			<version>2.3.3</version>
-		</dependency>
-
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
