@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import com.callor.file.dao.BBsDao;
 import com.callor.file.model.BBsDto;
 import com.callor.file.service.BBsService;
+import com.callor.file.service.FileService;
 
 @Service
 public class BBsServiceImplV1 implements BBsService{
 
+	protected final FileService fileService;
 	protected final BBsDao bbsDao;
 	public BBsServiceImplV1(BBsDao bbsDao) {
 		this.bbsDao = bbsDao;

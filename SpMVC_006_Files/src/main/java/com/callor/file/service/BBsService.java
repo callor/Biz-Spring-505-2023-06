@@ -7,4 +7,6 @@ import com.callor.file.model.BBsDto;
 public interface BBsService {
 	public List<BBsDto> selectAll();
 
+	public void insert(BBsDto bbsDto);
+
 }

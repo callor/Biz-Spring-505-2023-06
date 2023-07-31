@@ -5,10 +5,11 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<bean id="multipartResolver" 
+			class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 			<property name="defaultEncoding" value="UTF-8"/>
-			<property name="maxUploadSize" value="20000000"/>
-			<property name="maxUploadSizePerFile" value="2000000"/>
+			<property name="maxUploadSize" value="200000000"/>
+			<property name="maxUploadSizePerFile" value="20000000"/>
 	</bean>
 	
 		
