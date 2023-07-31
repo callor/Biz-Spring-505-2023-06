@@ -9,8 +9,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.file.dao.BBsDao;
 import com.callor.file.model.BBsDto;
+import com.callor.file.model.FileDto;
 import com.callor.file.service.BBsService;
 import com.callor.file.service.FileService;
+import com.callor.file.service.GalleryService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,10 +20,11 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class BBsServiceImplV1 implements BBsService{
 
+	protected final GalleryService galleryService;
 	protected final FileService fileService;
 	protected final BBsDao bbsDao;
-
-	public BBsServiceImplV1(FileService fileService, BBsDao bbsDao) {
+	public BBsServiceImplV1(GalleryService galleryService, FileService fileService, BBsDao bbsDao) {
+		this.galleryService = galleryService;
 		this.fileService = fileService;
 		this.bbsDao = bbsDao;
 	}
@@ -38,11 +41,11 @@ public class BBsServiceImplV1 implements BBsService{
 	 */
 	@Bean
 	public void create_table() {
-		try {
+//		try {
 			bbsDao.create_bbs_table(null);
-		} catch (Exception e) {
+//		} catch (Exception e) {
 			// TODO: handle exception
-		}
+//		}
 	}
 
 	@Override
@@ -50,15 +53,33 @@ public class BBsServiceImplV1 implements BBsService{
 		
 		try {
 			String fileName = fileService.fileUp(b_file);
-			if(!fileName.isBlank()) {
+			if(fileName != null && !fileName.isBlank()) {
 				bbsDto.setB_image(fileName);
 				bbsDto.setB_origin_image(b_file.getOriginalFilename());
-				bbsDao.insert(bbsDto);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		bbsDao.insert(bbsDto);
+		log.debug("게시판 ID {}", bbsDto.getB_seq());
+		
+		if(b_files.getFiles("b_files").size() < 1) {
+			return ;
+		}
+		
+		// form 에 multiple 로 설정된 input tag 의 이름(b_files
+		try {
+			List<FileDto> files = fileService.filesUp(b_files);
+			galleryService.insert(files,bbsDto.getB_seq());
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 

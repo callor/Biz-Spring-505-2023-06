@@ -1,6 +1,7 @@
 package com.callor.file.service.impl;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -52,8 +53,22 @@ public class FileSServiceImplV1 implements FileService{
 
 	@Override
 	public List<FileDto> filesUp(MultipartHttpServletRequest files) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+
+		//  form 에서 전달된 멀티파일을 개별 파일로 분해하여 List 에 담기
+		List<MultipartFile> fileList = files.getFiles("b_files");
+		List<FileDto> resultFile = new ArrayList<>();
+		
+		// List 에 담긴 개별파일을 서버에 업로드
+		for(MultipartFile file : fileList) {
+			String resultName = this.fileUp(file) ;
+			String originName = file.getOriginalFilename();
+			
+			FileDto fileDto = FileDto.builder().
+							f_origin_image(originName).
+							f_image(resultName).build();
+			resultFile.add(fileDto);
+		}
+		return resultFile;
 	}
 
 	@Override

@@ -4,9 +4,25 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.callor.file.dao.FileDao">
+ 
+ 	<insert id="insert">
+ 		INSERT INTO tbl_files (
+ 			f_bseq,
+ 			f_image,
+ 			f_origin_image
+ 		) 
+ 		<foreach collection="list" item="DTO" separator=", " open="VALUES">
+ 			(
+ 				#{b_seq},
+ 			 	#{DTO.f_image},
+ 				#{DTO.f_origin_image}
+			)
+ 		</foreach>
+ 	
+ 	</insert>
 
 	<select id="create_file_table">
-		CREATE TABLE tbl_file (
+		CREATE TABLE tbl_files (
 			f_seq BIGINT PRIMARY KEY AUTO_INCREMENT,
 			f_bseq BIGINT,
 			f_image VARCHAR(255),

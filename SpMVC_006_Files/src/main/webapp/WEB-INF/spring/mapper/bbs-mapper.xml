@@ -36,6 +36,13 @@
 			#{b_password}, #{b_ccode}, 	#{b_date},
 			#{b_viewcount}, #{b_image}, #{b_origin_image}
 		  )
+		  <!-- 
+		  게시판이 insert 된후 새로 생성된 b_seq 값을 java 코드에서 조회
+		  할수 있도록 return 하기 
+		  -->
+		  <selectKey keyProperty="b_seq" order="AFTER" resultType="Long">
+		  	SELECT LAST_INSERT_ID()
+		  </selectKey>
 	</insert>
 
 	<select id="create_bbs_table">
