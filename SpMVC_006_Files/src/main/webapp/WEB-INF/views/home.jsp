@@ -16,6 +16,12 @@
 			<td>SEQ</td>
 			<td>제목</td>
 		</tr>
+		<c:forEach items="${BBS_LIST}" var="BBS">
+			<tr>
+				<td>${BBS.b_seq}</td>
+				<td><a href="${rootPath}/detail?b_seq=${BBS.b_seq}">${BBS.b_title}</a></td>
+			</tr>
+		</c:forEach>
 	</table>
 	<a href="${rootPath}/insert">겔러리 작성</a>
 </body>

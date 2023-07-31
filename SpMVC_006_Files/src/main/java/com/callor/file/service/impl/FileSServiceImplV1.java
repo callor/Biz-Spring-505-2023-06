@@ -4,13 +4,14 @@ import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.file.model.FileDto;
 import com.callor.file.service.FileService;
-import com.google.protobuf.Field;
 
+@Service
 public class FileSServiceImplV1 implements FileService{
 
 	protected final String fileUpPath;

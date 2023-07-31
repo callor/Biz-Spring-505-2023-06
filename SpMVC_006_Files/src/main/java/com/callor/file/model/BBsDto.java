@@ -26,5 +26,6 @@ public class BBsDto {
 
 	// 대표이미지 
 	private String b_image;
+	private String b_origin_image;
 	
 }

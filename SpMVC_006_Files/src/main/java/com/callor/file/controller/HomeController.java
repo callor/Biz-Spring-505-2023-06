@@ -1,6 +1,6 @@
 package com.callor.file.controller;
 
-import java.util.Locale;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.file.model.BBsDto;
 import com.callor.file.service.BBsService;
-import com.callor.file.service.FileService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,7 +29,9 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home( Model model) {
+		List<BBsDto> bbsList = bbsService.selectAll();
+		model.addAttribute("BBS_LIST",bbsList);
 		return "home";
 	}
 	
@@ -49,18 +50,25 @@ public class HomeController {
 
 		log.debug("파일 {}", b_file);
 		log.debug("파일들 {}", b_files);
-		
-		try {
-//			String resultName = fileService.fileUp(b_file);
-			bbsDto.setB_image(resultName);
-			bbsService.insert(bbsDto);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-				
+
+		bbsService.insert(bbsDto, b_file, b_files);
+	
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value="/detail",method=RequestMethod.GET)
+	public String detail(
+			@ModelAttribute("BBS") BBsDto bbsDto,
+			@RequestParam(value="b_seq", 
+					required = false, 
+					defaultValue = "0") 
+			long b_seq, Model model) {
+			bbsDto = bbsService.findById(b_seq);
+			model.addAttribute("BBS",bbsDto);
+		
+		return "detail";
+	}
+	
 	
 	@ModelAttribute("BBS")
 	public BBsDto newBBsDto() {

@@ -13,6 +13,18 @@
 		SELECT * FROM tbl_bbs WHERE b_seq = #{id}
 	</select>
 
+	<insert id="insert">
+		INSERT INTO tbl_bbs(
+			b_title,	b_content, 	b_nickname,
+			b_password, b_ccode, 	b_date,
+			b_viewcount, b_image, b_origin_image
+		  ) VALUES (
+			#{b_title},	#{b_content}, 	#{b_nickname},
+			#{b_password}, #{b_ccode}, 	#{b_date},
+			#{b_viewcount}, #{b_image}, #{b_origin_image}
+		  )
+	</insert>
+
 	<select id="create_bbs_table">
 		CREATE TABLE tbl_bbs (
 			b_seq BIGINT PRIMARY KEY AUTO_INCREMENT,

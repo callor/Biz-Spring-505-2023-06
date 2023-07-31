@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.file.dao.BBsDao;
 import com.callor.file.model.BBsDto;
@@ -15,13 +17,15 @@ public class BBsServiceImplV1 implements BBsService{
 
 	protected final FileService fileService;
 	protected final BBsDao bbsDao;
-	public BBsServiceImplV1(BBsDao bbsDao) {
+
+	public BBsServiceImplV1(FileService fileService, BBsDao bbsDao) {
+		this.fileService = fileService;
 		this.bbsDao = bbsDao;
 	}
 
 	@Override
 	public List<BBsDto> selectAll() {
-			return null;
+			return bbsDao.selectAll();
 	}
 	
 	/*
@@ -37,5 +41,32 @@ public class BBsServiceImplV1 implements BBsService{
 			// TODO: handle exception
 		}
 	}
+
+	@Override
+	public void insert(BBsDto bbsDto, MultipartFile b_file, MultipartHttpServletRequest b_files) {
+		
+		try {
+			String fileName = fileService.fileUp(b_file);
+			if(!fileName.isBlank()) {
+				bbsDto.setB_image(fileName);
+				bbsDto.setB_origin_image(b_file.getOriginalFilename());
+				bbsDao.insert(bbsDto);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public BBsDto findById(long b_seq) {
+		return bbsDao.findById(b_seq);
+	}
 	
 }
+
+
+
+
+
