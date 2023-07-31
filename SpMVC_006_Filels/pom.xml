@@ -86,8 +86,6 @@
 		</dependency>
 
 
-		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc6</artifactId> 
-			<version>11.2.0</version> </dependency> -->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>com.mysql</groupId>
@@ -151,14 +149,11 @@
 			<version>2.3.3</version>
 			<scope>provided</scope>
 		</dependency>
-
-
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-
 
 		<!-- Test -->
 		<dependency>
