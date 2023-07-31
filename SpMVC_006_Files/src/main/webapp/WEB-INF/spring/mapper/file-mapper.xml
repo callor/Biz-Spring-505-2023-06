@@ -5,6 +5,13 @@
   
  <mapper namespace="com.callor.file.dao.FileDao">
  
+ 	<select id="findById">
+ 		SELECT * FROM tbl_files WHERE f_seq = #{id}
+ 	</select>
+ 	<delete id="delete">
+ 		DELETE FROM tbl_files WHERE f_seq = #{id}
+ 	</delete>
+ 
  	<insert id="insert">
  		INSERT INTO tbl_files (
  			f_bseq,

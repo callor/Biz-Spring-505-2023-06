@@ -8,5 +8,6 @@ public interface GalleryService {
 	
 	public List<FileDto> findListByBSeq(Long b_seq);
 	public int insert(List<FileDto> files, Long b_seq);
+	public int imgDelete(long f_seq);
 
 }

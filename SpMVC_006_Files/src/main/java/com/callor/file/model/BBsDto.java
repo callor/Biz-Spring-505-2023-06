@@ -1,5 +1,7 @@
 package com.callor.file.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,4 +30,11 @@ public class BBsDto {
 	private String b_image;
 	private String b_origin_image;
 	
+	private List<FileDto> m_files;
+	
+	
 }
+
+
+
+

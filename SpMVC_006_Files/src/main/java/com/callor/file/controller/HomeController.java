@@ -2,7 +2,6 @@ package com.callor.file.controller;
 
 import java.util.List;
 
-import org.apache.velocity.app.event.ReferenceInsertionEventHandler.referenceInsertExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.file.model.BBsDto;
 import com.callor.file.service.BBsService;
+import com.callor.file.service.GalleryService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,9 +23,11 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class HomeController {
 	
-	
+	protected final GalleryService galleryService;
 	protected final BBsService bbsService;
-	public HomeController(BBsService bbsService) {
+
+	public HomeController(GalleryService galleryService, BBsService bbsService) {
+		this.galleryService = galleryService;
 		this.bbsService = bbsService;
 	}
 
@@ -96,9 +98,16 @@ public class HomeController {
 		
 	}
 
-	
-	
-	
+	@RequestMapping(value="/img_delete",method=RequestMethod.GET)
+	public String img_delete(
+			@RequestParam(value="b_seq", 
+				required = false, defaultValue = "0" ) long b_seq,
+			@RequestParam(value="f_seq", 
+				required = false, defaultValue = "0" )
+			long f_seq) {
+		int result = galleryService.imgDelete(f_seq);
+		return "redirect:/detail?b_seq=" + b_seq;
+	}
 	
 	@ModelAttribute("BBS")
 	public BBsDto newBBsDto() {
