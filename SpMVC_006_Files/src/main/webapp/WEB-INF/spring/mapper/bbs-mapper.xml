@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.file.dao.BBsDao">
+
+
+	<select id="selectAll" resultType="BBsDto">
+		SELECT * FROM tbl_bbs ORDER BY b_seq DESC
+	</select>
+	<select id="findById" resultType="BBsDto" parameterType="Long">
+		SELECT * FROM tbl_bbs WHERE b_seq = #{id}
+	</select>
+
+	<select id="create_bbs_table">
+		CREATE TABLE tbl_bbs (
+			b_seq BIGINT PRIMARY KEY AUTO_INCREMENT,
+			b_title varchar(125),
+			b_content varchar(1000),
+			b_nickname varchar(125),
+			b_password varchar(125),
+			b_ccode varchar(6),
+			b_date varchar(10),
+			b_viewcount long,
+			b_image VARCHAR(255),
+		    b_origin_image VARCHAR(255)
+		)
+	</select> 
+ 
+ </mapper> 

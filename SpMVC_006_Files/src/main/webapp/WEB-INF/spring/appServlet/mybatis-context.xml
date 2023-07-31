@@ -16,16 +16,16 @@
 
 	<bean id="mySQL_DS" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://192.168.0.220:3306/bbsDB"/>
-		<property name="username" value="callor"/>
-		<property name="password" value="!Korea8085"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/imageDB"/>
+		<property name="username" value="root"/>
+		<property name="password" value="!Biz8080"/>
 	</bean>
 	
 	<bean id="sqlSessionFactory" 
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource"  ref="mySQL_DS" />
 		<property name="typeAliasesPackage" 
-					value="com.callor.bbs.models"/>
+					value="com.callor.file.model"/>
 		<property name="mapperLocations" 
 				value="/WEB-INF/spring/mapper/*-mapper.xml"/>
 	</bean>
@@ -33,7 +33,7 @@
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
-	<mybatis-spring:scan base-package="com.callor.bbs.dao"/>
+	<mybatis-spring:scan base-package="com.callor.file.dao"/>
 	
 	<tx:annotation-driven 
 		transaction-manager="transactionManager"/>

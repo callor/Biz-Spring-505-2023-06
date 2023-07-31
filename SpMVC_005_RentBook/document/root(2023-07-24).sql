@@ -69,7 +69,11 @@ SELECT * FROM tbl_books
 ORDER BY B_CODE
 LIMIT 10 OFFSET 1;
 
-
+SELECT COUNT(*) FROM tbl_books
+WHERE 
+b_name LIKE CONCAT('%', '부자', '%') OR
+b_name LIKE CONCAT('%', '행복', '%') OR
+b_name LIKE CONCAT('%', '부동산', '%'); 
 
 
 

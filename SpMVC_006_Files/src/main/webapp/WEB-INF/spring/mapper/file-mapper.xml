@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.file.dao.FileDao">
+
+	<select id="create_file_table">
+		CREATE TABLE tbl_file (
+			f_seq BIGINT PRIMARY KEY AUTO_INCREMENT,
+			f_bseq BIGINT,
+			f_image VARCHAR(255),
+		    f_origin_image VARCHAR(255)
+		)
+	</select> 
+ 
+ </mapper> 
