@@ -40,7 +40,8 @@ public class BBsServiceImplV1 implements BBsService{
 	 * 원래 @Bean 의 역할과 달리 TABLE 을 생성하기 위한 코드로 변형
 	 */
 	@Bean
-	public void create_table() {
+	public void create_bbs_table() {
+		log.debug("CREATE TABLE");
 //		try {
 			bbsDao.create_bbs_table(null);
 //		} catch (Exception e) {
@@ -78,9 +79,6 @@ public class BBsServiceImplV1 implements BBsService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
 
 	@Override

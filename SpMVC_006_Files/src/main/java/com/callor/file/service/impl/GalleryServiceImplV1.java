@@ -29,7 +29,7 @@ public class GalleryServiceImplV1 implements GalleryService{
 	}
 	
 	@Bean
-	public void create_table() {
+	public void create_file_table() {
 		try {
 			fileDao.create_file_table(null);
 			
