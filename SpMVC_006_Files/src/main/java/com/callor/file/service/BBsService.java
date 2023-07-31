@@ -16,5 +16,7 @@ public interface BBsService {
 
 	public BBsDto findById(long b_seq);
 
+	public int update(BBsDto bbsDto, MultipartFile b_file, MultipartHttpServletRequest b_files);
+
 
 }

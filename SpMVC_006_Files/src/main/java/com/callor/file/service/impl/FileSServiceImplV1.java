@@ -58,7 +58,18 @@ public class FileSServiceImplV1 implements FileService{
 
 	@Override
 	public String delete(String fileName) {
-		// TODO Auto-generated method stub
+
+		if(fileName == null || fileName.isBlank()) {
+			return null;
+		}
+		File delFile = new File(fileUpPath, fileName);
+		// 파일이 있는지 확인
+		if(delFile.exists()) {
+			// 파일 삭제
+			if(delFile.delete()) {
+				return "OK";
+			}
+		}
 		return null;
 	}
 

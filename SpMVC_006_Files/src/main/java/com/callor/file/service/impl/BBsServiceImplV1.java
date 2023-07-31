@@ -63,6 +63,42 @@ public class BBsServiceImplV1 implements BBsService{
 	public BBsDto findById(long b_seq) {
 		return bbsDao.findById(b_seq);
 	}
+
+	/*
+	 * 파일포함한 Update 
+	 * 1. 새롭게 업로드된 대표 파일과 원래 Table 에 저장된 파일이름 비교
+	 * 2. 업로드된 파일과 Table 에 저장된 파일이 서로 다르면
+	 * 		업로드된 파일 삭제
+	 * 3. 새로운 파일 업로드
+	 * 4. 업로드된 새로운 파일정보 Table 저장
+	 */
+	@Override
+	public int update(BBsDto bbsDto, MultipartFile b_file, MultipartHttpServletRequest b_files) {
+
+		String upload_name = b_file.getOriginalFilename();
+		long b_seq = bbsDto.getB_seq();
+		
+		bbsDto = bbsDao.findById(b_seq);
+		String old_name = bbsDto.getB_origin_image();
+		
+		if( !upload_name.isBlank() && !upload_name.equals(old_name)) {
+			fileService.delete(bbsDto.getB_image());
+			try {
+				upload_name = fileService.fileUp(b_file);
+				bbsDto.setB_image(upload_name);
+				bbsDto.setB_origin_image(b_file.getOriginalFilename());
+				bbsDao.update(bbsDto);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			bbsDao.update(bbsDto);
+		}
+		
+		
+		return 0;
+	}
 	
 }
 

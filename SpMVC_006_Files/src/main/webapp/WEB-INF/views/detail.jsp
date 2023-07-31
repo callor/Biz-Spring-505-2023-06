@@ -16,9 +16,7 @@
 		<img src="${rootPath}/upload/${BBS.b_image}" width="150px" 
 			alt="${BBS.b_origin_image}"	/></div>
 
-
-
-
+	<div><a href="${rootPath}/update?b_seq=${BBS.b_seq}">수정하기</a></div>
 
 
 </body>

@@ -13,6 +13,19 @@
 		SELECT * FROM tbl_bbs WHERE b_seq = #{id}
 	</select>
 
+	<update id="update" parameterType="BBsDto">
+		UPDATE tbl_bbs SET 
+			b_title = #{b_title},	
+			b_content = #{b_content} , 	
+			b_nickname = #{b_nickname},
+			b_password = #{b_password}, 
+			b_ccode = #{b_ccode}, 	
+			b_date = #{b_date},
+			b_viewcount =#{b_viewcount}, 
+			b_image = #{b_image}, 
+			b_origin_image = #{b_origin_image}
+		WHERE b_seq = #{b_seq}
+	</update>
 	<insert id="insert">
 		INSERT INTO tbl_bbs(
 			b_title,	b_content, 	b_nickname,
