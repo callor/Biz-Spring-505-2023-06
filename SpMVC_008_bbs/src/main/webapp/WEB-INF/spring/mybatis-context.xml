@@ -9,6 +9,28 @@
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
+	<bean id="encConfig" 
+		class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
+		<property name="algorithm" value="PBEWithMD5AndDES"/>
+		<property name="passwordEnvName" value="callor.com"/>
+	</bean>
+
+	<bean id="encConvert" 
+		class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+		<property name="config" ref="encConfig"/>
+	</bean>
+
+	<bean 
+	class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer">
+		<constructor-arg ref="encConvert"/>
+		<property name="fileEncoding" value="UTF-8"/>
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/spring/properties/db_info.properties</value>
+			</list>
+		</property>
+	</bean>
+
 	<!-- 
 		dataSource
 		SqlSessionFactoryBean
@@ -19,18 +41,22 @@
 	 		<property name="driverClassName" 
 	 				value="com.mysql.cj.jdbc.Driver" />
 			<property name="url" value="jdbc:mysql://localhost:3306/bbsDB"/>
-			<property name="username" value="root"/>
-			<property name="password" value="!Biz8080"/>	 				
+			<property name="username" value="${db.username}"/>
+			<property name="password" value="${db.password}"/>	 				
 	 </bean>
-	
-	<bean id="sessionFactory" 
-			class="org.mybatis.spring.SqlSessionFactoryBean">
-	</bean>
-
-	<bean class="org.mybatis.spring.SqlSessionTemplate">
-	</bean>
-
-
-	
-
+	 
+	 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+	 	<property name="dataSource" ref="ds"/>
+	 	<property name="typeAliasesPackage" 
+	 			value="com.callor.hello.models"/>
+	 	<property name="mapperLocations" 
+	 			value="/WEB-INF/spring/mapper/*-mapper.xml"/>
+	 </bean>
+	 
+	 <bean class="org.mybatis.spring.SqlSessionTemplate">
+	 	<constructor-arg ref="sqlSession"/>
+	 </bean>
+	 <mybatis-spring:scan base-package="com.callor.hello.dao"/>
+	 
+	 
 </beans>

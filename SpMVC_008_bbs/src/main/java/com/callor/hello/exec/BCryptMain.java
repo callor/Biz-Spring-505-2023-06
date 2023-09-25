@@ -1,8 +1,9 @@
 package com.callor.hello.exec;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Map;
 
-import org.jasypt.encryption.pbe.StandardPBEByteEncryptor;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 
 public class BCryptMain {
@@ -43,8 +44,16 @@ public class BCryptMain {
 		
 		String savePath = "./src/main/webapp/WEB-INF/spring/properties/db_info.properties";
 		
-		
-		
+		try {
+			PrintWriter out = new PrintWriter(savePath);
+			out.println("username=callor");
+			out.println("password=12345");
+			out.flush();
+			out.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }

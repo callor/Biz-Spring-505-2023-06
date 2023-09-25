@@ -46,3 +46,4 @@
 ## DB 연결정보 암호화 하기
 - DataSource 에 설정된 username 과 password 는 github 등에 프로젝트가 업로드 되면, 외부에 노출이 되고,  외부에 노출이 되면 보안에 치명적인 문제를 일으킬수 있다.
 - dataSource 정보를 github 에 업로드 되지 않도록 .gitignore 에 등록하면될 것이다.
+- Spring security 프로젝트에서는 username 과 password 를 암호화 하여 사용한다.
