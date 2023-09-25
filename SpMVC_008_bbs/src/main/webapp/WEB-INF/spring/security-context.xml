@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security-5.3.xsd">
+
+	<!--  security 와 관련된 클래스들을 scan 하라 -->
+	<context:component-scan base-package="com.callor.hello.service.auth"/>
+
+	<sec:http auto-config="true" use-expressions="true">
+		<sec:intercept-url pattern="/user/join"  access="permitAll()"/>
+		<sec:intercept-url pattern="/user/login"  access="isAnonymous()"/>
+		<sec:intercept-url pattern="/user/mypage"  access="hasAnyRole('USER','ADMIN')"/>
+		<sec:intercept-url pattern="/admin"  access="isAuthenticated() AND hasRole('ADMIN')"/>
+		<sec:intercept-url pattern="/home"  access="hasRole('USER')"/>
+		
+		<sec:intercept-url pattern="/**"  access="permitAll()"/>
+		<sec:form-login 
+				username-parameter="username"
+				password-parameter="password" 
+				login-page="/user/login"
+				login-processing-url="/user/login"
+		/>
+		<sec:logout logout-success-url="/" invalidate-session="true"/>
+	</sec:http>
+	<!-- 
+	<sec:authentication-manager>
+		<sec:authentication-provider>
+			<sec:user-service>
+				<sec:user 
+						name="callor" 
+						authorities="USER" 
+						password="{noop}12345"/>
+			</sec:user-service>
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+	 -->
+	 
+	 <!-- 
+	 com.callor.hello.service.auth 패키지의 클래중에 
+	 authProviderImpl 이름이 설정된 Service 클래스를 찾아서
+	 authentication-manager 로 등록하기
+	 -->
+	 <sec:authentication-manager>
+		<sec:authentication-provider ref="authProviderImpl"/>	 
+	 </sec:authentication-manager>
+	 
+</beans>

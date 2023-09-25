@@ -41,3 +41,8 @@
 - login 한 사용자의 Token 을 발행할때 `ROLE_권한` 을 포함하여
 특정한 URL 에 대하여 권한을 검사할수 있다. 권한이 부여되지 않은 URL 에 사용자가 접근을 시도하면 `403 FORBIDDEN` 오류를 발생한다
 - Security를 사용하면 특정한 URL 에 권한을 세밀하게 부여하여 Login 한 사용자 별로 화면을 보여줄수 있다.
+
+
+## DB 연결정보 암호화 하기
+- DataSource 에 설정된 username 과 password 는 github 등에 프로젝트가 업로드 되면, 외부에 노출이 되고,  외부에 노출이 되면 보안에 치명적인 문제를 일으킬수 있다.
+- dataSource 정보를 github 에 업로드 되지 않도록 .gitignore 에 등록하면될 것이다.
