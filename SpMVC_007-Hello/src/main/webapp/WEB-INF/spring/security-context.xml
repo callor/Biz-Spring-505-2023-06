@@ -39,6 +39,11 @@
 	</sec:authentication-manager>
 	 -->
 	 
+	 <!-- 
+	 com.callor.hello.service.auth 패키지의 클래중에 
+	 authProviderImpl 이름이 설정된 Service 클래스를 찾아서
+	 authentication-manager 로 등록하기
+	 -->
 	 <sec:authentication-manager>
 		<sec:authentication-provider ref="authProviderImpl"/>	 
 	 </sec:authentication-manager>

@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/user")
 public class UserController {
 	
+	// GET: http://localhost:8080/hello/user/login
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login() {
-		return null;
+
+		 return null;
+		// return "user/login";
+		// views/user/login.jsp 파일을 rendering 하여 Response 하라
 	}
-	
 
 }
