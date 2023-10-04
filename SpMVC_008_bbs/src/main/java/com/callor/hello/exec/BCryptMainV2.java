@@ -18,8 +18,9 @@ public class BCryptMainV2 {
 		StandardPBEStringEncryptor pbe = new StandardPBEStringEncryptor();
 		
 		// MD5 와 DES 방식으로 암호화를 하겠다.
-		pbe.setAlgorithm("PBEWithMD5AndDES");
+//		pbe.setAlgorithm("PBEWITHHMACSHA512ANDAES_256");
 		pbe.setPassword(saltKey);
+		System.out.println(pbe.toString());
 		
 		String savePath = "./src/main/webapp/WEB-INF/spring/properties/db_info.properties";
 		System.out.printf("SALT Password : %s\n",saltKey);

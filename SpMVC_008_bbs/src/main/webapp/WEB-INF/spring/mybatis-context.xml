@@ -9,9 +9,11 @@
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
+		<!-- 
+		<property name="algorithm" value="PBEWITHHMACSHA512ANDAES_256"/>
+		 -->
 	<bean id="encConfig" 
 		class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
-		<property name="algorithm" value="PBEWithMD5AndDES"/>
 		<property name="passwordEnvName" value="callor.com"/>
 	</bean>
 

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security-5.3.xsd">
+
+
+	<!-- 
+	Security 를 프로젝트에 적용하기위한 설정 
+	Server 에 Request 가 발생했을때
+	Security 에 의해 filtering 을 하기위한 설정
+	
+	sec:form-login : 로그인을 수행하는 기능 설정
+	sec:logout : 로그아웃을 수행하는 기능 설정
+	sec:intercept-url : 서버에 Req URL 을 필터링하는 설정
+	-->
+	<sec:http auto-config="true" use-expressions="true">
+		<sec:intercept-url pattern="/bbs/insert" 
+				access="hasAnyRole('USER','ADMIN')"/>
+		<sec:intercept-url pattern="/bbs" access="isAnonymous()"/>
+
+		<sec:intercept-url pattern="/admin" access="hasRole('ADMIN')"/>
+		<sec:intercept-url pattern="/admin/sec" 
+					access="isAuthenticated() AND hasRole('ADMIN')"/>
+		
+		<sec:intercept-url pattern="/user/join" access="isAnonymous()"/>
+		<sec:intercept-url pattern="/user/login" access="permitAll()"/>
+		<sec:intercept-url pattern="/user/mypage" 
+				access="isAuthenticated()"/>
+		<sec:intercept-url pattern="/**" access="permitAll()"/>
+		<sec:form-login/>
+		<sec:logout 
+				logout-success-url="/" 
+				invalidate-session="true"/>
+	</sec:http>
+	
+	<!-- 
+	filtering 을 수행한 후
+	로그인 관련 테스트를 하기위한 임시 로그인 정보를 설정
+	 -->
+	<sec:authentication-manager>
+		<sec:authentication-provider>
+			<sec:user-service>
+				<sec:user 
+						name="callor" 
+						authorities="USER"
+						password="{noop}12345"
+				/>
+			</sec:user-service>		
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+
+
+
+</beans>
