@@ -41,4 +41,10 @@
 
 
 ## Spring Data-JPA 초기화 정책
+- Spring-Data 프로젝트는 SQL 을 가급적 사용하지 않고, Java 의  DataClass(Dto, VO)와 연동하여 Object-Relation-Mapping 형태로 DBMS의 CRUD를 구현하는 프로젝
 - `<prop key="hibernate.hbm2ddl.auto">create</prop>`
+- `create` : 프로젝트가 시작될때 기존의 Table 을 모두 DROP 하고 새로운 Table CREATE 하는 정책
+- `create-drop` : 프로젝트가 시작될때 기존 Tabkle 을 모두 DROP 하고 Table 을 Create, 그리고 프로젝트가 종료될때 또한번 Table 을 DROP
+- `Update` : Alter Table 을 실행하여 기존 Table Schema 구조를 변경한다
+- `none` : Table 과 관련하여 아무런 정책도 수행하지 않기
+- `validate` : 기존의 Table 과 새로운 Data Class 를 비교하여 차이가 있으면 프로젝트에서 Exception 을 발생하고 진행 중
