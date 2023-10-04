@@ -44,15 +44,18 @@
 	<sec:authentication-manager>
 		<sec:authentication-provider>
 			<sec:user-service>
-				<sec:user 
-						name="callor" 
-						authorities="USER"
-						password="{noop}12345"
-				/>
+				<sec:user name="callor" authorities="USER" password="{noop}12345"/>
+				<sec:user name="callor88" authorities="ADMIN" password="{noop}12345"/>
 			</sec:user-service>		
 		</sec:authentication-provider>
 	</sec:authentication-manager>
 
-
+	<!-- 
+	권한부여를 할때 ROLE_ 이라는 prefix 를 사용하도록 설정되어 있다 
+	prefix 없이 권한을 부여하기 위한 클래스를 객체를 선언해둔다
+	-->
+	<bean class="org.springframework.security.config.core.GrantedAuthorityDefaults">
+		<constructor-arg value=""/>
+	</bean>
 
 </beans>

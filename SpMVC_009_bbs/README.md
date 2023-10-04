@@ -33,3 +33,12 @@
 	</dependencies>
 </dependencyManagement>
 ```	
+
+## Spring Security Dependencies 설정
+- `spring-security-config`, `spring-security-core`, `spring-security-web`, `spring-security-taglibs`
+
+## Spring Security 현재 version 을 원할하게 사용하기 위하여 Servlet 관련 dependecies 를 변경하자
+
+
+## Spring Data-JPA 초기화 정책
+- `<prop key="hibernate.hbm2ddl.auto">create</prop>`
