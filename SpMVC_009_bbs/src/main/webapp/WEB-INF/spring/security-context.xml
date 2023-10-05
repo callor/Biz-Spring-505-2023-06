@@ -31,7 +31,9 @@
 		<sec:intercept-url pattern="/user/mypage" 
 				access="isAuthenticated()"/>
 		<sec:intercept-url pattern="/**" access="permitAll()"/>
-		<sec:form-login/>
+		<sec:form-login 
+			login-page="/user/login"
+		/>
 		<sec:logout 
 				logout-success-url="/" 
 				invalidate-session="true"/>

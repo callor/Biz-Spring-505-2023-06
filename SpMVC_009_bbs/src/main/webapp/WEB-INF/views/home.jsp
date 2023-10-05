@@ -25,8 +25,38 @@
 		</form:form>
 	</sec:authorize>
 	<sec:authorize access="isAnonymous()">
-		<a href="${rootPath}/login">로그인</a>
+		<a href="${rootPath}/user/login">로그인</a>
 	</sec:authorize>
+	
+	<sec:authorize access="isAuthenticated()">
+		<p>로그인한 username : 
+		<sec:authentication property="principal.username"/>
+		
+		<p>로그인한 email : 
+		<sec:authentication property="principal.email"/>
+	
+		<p>로그인한 nickname : 
+		<sec:authentication property="principal.nickname"/>
+	
+		<p>로그인한 나이 : 
+		<sec:authentication property="principal.age"/>
+		
+		<sec:authorize access="hasRole('ADMIN')">
+			<p>관리자로 로그인 함
+		</sec:authorize>
+		<sec:authorize access="hasRole('USER')">
+			<p>일반 사용자로 함
+		</sec:authorize>
+		<sec:authorize access="hasAnyRole('ADMIN', 'USER')">
+			<p>관리자 또는 일반 사용자 권한을 가짐
+		</sec:authorize>
+		<sec:authorize access="hasRole('USER') AND hasRole('ADMIN')">
+			<p>일반 사용자 이면서 관리자 권한을 가짐
+		</sec:authorize>
+	</sec:authorize>
+	
+
+
 	
 </body>
 </html>
