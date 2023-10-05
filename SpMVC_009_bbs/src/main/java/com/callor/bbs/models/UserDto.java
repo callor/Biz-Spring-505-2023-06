@@ -22,7 +22,7 @@ import lombok.ToString;
 @Builder
 
 @Entity
-@Table(name="tbl_test",schema = "jpaDB")
+@Table(name="tbl_users",schema = "jpaDB")
 public class UserDto {
 	
 	@Id
@@ -32,7 +32,10 @@ public class UserDto {
 	@Column(name="username", columnDefinition = "VARCHAR(20)")
 	private String username; //	varchar(255)
 	
+	@Column(name="password", columnDefinition = "VARCHAR(125)")
 	private String password;//	varchar(255)
+	
+	@Column(name="email", columnDefinition = "VARCHAR(125)")
 	private String email;	//	varchar(255)
 	private String nickname;//	varchar(255)
 	

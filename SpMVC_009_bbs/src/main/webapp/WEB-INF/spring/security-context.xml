@@ -38,9 +38,19 @@
 	</sec:http>
 	
 	<!-- 
+	Java Class 를 통해서 로그인 기능을 수행하도록 
+	authentication manager 등록하기
+	-->
+	<context:component-scan base-package="com.callor.bbs.service.auth" />
+	<sec:authentication-manager>
+		<sec:authentication-provider ref="authProvider"/>
+	</sec:authentication-manager>
+	
+	<!-- 
 	filtering 을 수행한 후
 	로그인 관련 테스트를 하기위한 임시 로그인 정보를 설정
 	 -->
+	<!-- 
 	<sec:authentication-manager>
 		<sec:authentication-provider>
 			<sec:user-service>
@@ -49,6 +59,7 @@
 			</sec:user-service>		
 		</sec:authentication-provider>
 	</sec:authentication-manager>
+	 -->
 
 	<!-- 
 	권한부여를 할때 ROLE_ 이라는 prefix 를 사용하도록 설정되어 있다 

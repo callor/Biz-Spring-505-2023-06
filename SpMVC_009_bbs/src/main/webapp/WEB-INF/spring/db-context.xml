@@ -25,7 +25,8 @@
 		<property name="dataSource" ref="ds"/>
 	</bean>
 	
- 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+ 	<bean id="entityManagerFactory" 
+ 	class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="ds"/>
 		<property name="packagesToScan" value="com.callor.bbs.models"/>
 		<property name="jpaVendorAdapter">
@@ -33,7 +34,7 @@
 		</property>
 		<property name="jpaProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 			</props>
