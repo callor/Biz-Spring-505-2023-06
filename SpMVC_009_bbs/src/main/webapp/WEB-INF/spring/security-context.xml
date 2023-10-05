@@ -33,6 +33,10 @@
 		<sec:intercept-url pattern="/**" access="permitAll()"/>
 		<sec:form-login 
 			login-page="/user/login"
+			username-parameter="U_name"
+			password-parameter="U_pass"
+			login-processing-url="/user/login"
+			default-target-url="/"
 		/>
 		<sec:logout 
 				logout-success-url="/" 

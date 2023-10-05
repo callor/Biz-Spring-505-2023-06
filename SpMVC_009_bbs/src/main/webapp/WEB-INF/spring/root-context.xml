@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+		<!-- 
+		service.impl 에 있는 Component 중에 일부는 Sprint Security 가 사용한다
+		이때 servlet-context.xml 에서 component-scan 을 실행하면
+		사용하는 범위(scope)가 Dipatcher-servlet 이후에서만 가능하다
+		Security 는 Dispacter-servlet 보다 앞단에서 필터링을 하는데
+		필요한 Service Component 를 사용할수 없을 수도 있다
+		그래서 root-context.xml 에서 scan 하도록 설정을 한다
+		-->
+		<context:component-scan base-package="com.callor.bbs.service.impl"/>
 		
 </beans>

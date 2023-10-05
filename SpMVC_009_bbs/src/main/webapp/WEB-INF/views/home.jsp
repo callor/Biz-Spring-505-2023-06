@@ -9,6 +9,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	body {
+		width:100vw;
+	}
+	body * {
+	  width: 60%;
+	  margin:5px auto;
+	}
+</style>
 </head>
 <body>
 	<h1>반갑습니다</h1>
@@ -25,33 +34,34 @@
 		</form:form>
 	</sec:authorize>
 	<sec:authorize access="isAnonymous()">
-		<a href="${rootPath}/user/login">로그인</a>
+		<p><a href="${rootPath}/user/login">로그인</a>
+		<a href="${rootPath}/user/join">회원가입</a></p>
 	</sec:authorize>
 	
 	<sec:authorize access="isAuthenticated()">
 		<p>로그인한 username : 
-		<sec:authentication property="principal.username"/>
+		<sec:authentication property="principal.username"/></p>
 		
 		<p>로그인한 email : 
-		<sec:authentication property="principal.email"/>
+		<sec:authentication property="principal.email"/></p>
 	
 		<p>로그인한 nickname : 
-		<sec:authentication property="principal.nickname"/>
+		<sec:authentication property="principal.nickname"/></p>
 	
 		<p>로그인한 나이 : 
-		<sec:authentication property="principal.age"/>
+		<sec:authentication property="principal.age"/></p>
 		
 		<sec:authorize access="hasRole('ADMIN')">
-			<p>관리자로 로그인 함
+			<p>관리자로 로그인 함</p>
 		</sec:authorize>
 		<sec:authorize access="hasRole('USER')">
-			<p>일반 사용자로 함
+			<p>일반 사용자로 함</p>
 		</sec:authorize>
 		<sec:authorize access="hasAnyRole('ADMIN', 'USER')">
-			<p>관리자 또는 일반 사용자 권한을 가짐
+			<p>관리자 또는 일반 사용자 권한을 가짐</p>
 		</sec:authorize>
 		<sec:authorize access="hasRole('USER') AND hasRole('ADMIN')">
-			<p>일반 사용자 이면서 관리자 권한을 가짐
+			<p>일반 사용자 이면서 관리자 권한을 가짐</p>
 		</sec:authorize>
 	</sec:authorize>
 	

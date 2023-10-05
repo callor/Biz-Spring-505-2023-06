@@ -12,9 +12,9 @@
 <body>
 	<h1>로그인</h1>
 	<form:form>
-		<div><label>username : </label><input name="username"></div>
-		<div><label>password : </label><input name="password"></div>
-		<div>로그인</div>
+		<div><label>username : </label><input name="U_name"></div>
+		<div><label>password : </label><input name="U_pass"></div>
+		<div><button>로그인</button></div>
 	</form:form>
 </body>
 </html>
